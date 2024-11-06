@@ -1,13 +1,38 @@
 import { Environment } from '@react-three/drei'
 import { Book } from './Book'
-import { Vector3 } from 'three'
+import { Color, DoubleSide, MeshBasicMaterial, MeshStandardMaterial, Vector3 } from 'three'
+import { useMemo } from 'react'
+import { RoundEdgedBoxFlat } from '../utils/utils'
+import { BackSide } from 'three'
+
+const whiteColor = new Color("white");
 
 export const Experience = () => {
+
+    const bookGeometry = useMemo(() => RoundEdgedBoxFlat(1.28, 1.71, .1, .3, 10), []);
+    const bookMaterials = useMemo(() => [
+        new MeshBasicMaterial({
+            side: DoubleSide,
+            color: whiteColor,
+        }),
+        new MeshBasicMaterial({
+            side: DoubleSide,
+            color: "#111",
+        }),
+        new MeshBasicMaterial({
+            color: whiteColor,
+        }),
+    ], []);
+
     return (
         <>
-            <Book position={new Vector3(-0.64 * 4, .1, 0)} opened={true} />
-            <Book position={new Vector3(-0.64, .1, 0)} opened={true} />
-            <Book position={new Vector3(-0.64 * -2, .1, 0)} opened={true} />
+            <Book position={new Vector3(0, .1, 0)} opened={true} />
+            <Book position={new Vector3(0, .1, 0)} opened={true} />
+            <Book position={new Vector3(0, .1, 0)} opened={true} />
+
+            <mesh geometry={bookGeometry} material={bookMaterials} position={[0, 0.05, 0]}>
+
+            </mesh >
 
             <Environment preset="studio" />
             <directionalLight

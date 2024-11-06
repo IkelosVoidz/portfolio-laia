@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
-import { Loader, Stats, OrbitControls } from '@react-three/drei';
+import { Loader } from '@react-three/drei';
 import { Experience } from './components/Experience';
 import { UI } from './components/UI.tsx';
 function App() {
@@ -14,7 +14,7 @@ function App() {
                     {/* <OrbitControls />
                     <axesHelper />
                     <gridHelper /> */}
-                    <Stats />
+                    {/* <Stats /> */}
                     <group position-y={0}>
                         <Suspense fallback={null}>
                             <Experience />

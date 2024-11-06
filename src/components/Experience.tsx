@@ -1,5 +1,4 @@
 import { Environment } from '@react-three/drei'
-import Box from './Box'
 import { Book } from './Book'
 import { Vector3 } from 'three'
 

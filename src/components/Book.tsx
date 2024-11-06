@@ -32,7 +32,6 @@ const PAGE_DEPTH = 0.003;
 const PAGE_SEGMENTS = 30;
 const SEGMENT_WIDTH = PAGE_WIDTH / PAGE_SEGMENTS;
 
-const baseUrl = import.meta.env.BASE_URL;
 
 const pageGeometry = new BoxGeometry(
     PAGE_WIDTH,
@@ -89,9 +88,9 @@ const pageMaterials = [
 ];
 
 pages.forEach((page) => {
-    useTexture.preload(`${baseUrl}textures/${page.front}.jpg`);
-    useTexture.preload(`${baseUrl}textures/${page.back}.jpg`);
-    useTexture.preload(`${baseUrl}textures/book-cover-roughness.jpg`);
+    useTexture.preload(`/textures/${page.front}.jpg`);
+    useTexture.preload(`/textures/${page.back}.jpg`);
+    useTexture.preload(`/textures/book-cover-roughness.jpg`);
 });
 
 interface PageProps {
@@ -105,10 +104,10 @@ interface PageProps {
 
 const Page: FC<PageProps> = ({ number, front, back, page, opened, bookClosed, ...props }) => {
     const [picture, picture2, pictureRoughness] = useTexture([
-        `${baseUrl}textures/${front}.jpg`,
-        `${baseUrl}textures/${back}.jpg`,
+        `/textures/${front}.jpg`,
+        `/textures/${back}.jpg`,
         ...(number === 0 || number === pages.length - 1
-            ? [`${baseUrl}textures/book-cover-roughness.jpg`]
+            ? [`/textures/book-cover-roughness.jpg`]
             : []),
     ]);
     picture.colorSpace = picture2.colorSpace = SRGBColorSpace;

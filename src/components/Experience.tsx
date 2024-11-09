@@ -3,7 +3,7 @@ import { Book } from './Book'
 import { DoubleSide, MeshBasicMaterial, MeshStandardMaterial, SRGBColorSpace, Vector3 } from 'three'
 import { useMemo } from 'react'
 import { RoundEdgedBoxFlat } from '../utils/utils'
-import { Text } from '@react-three/drei';
+// import { Text } from '@react-three/drei';
 
 const baseUrl = import.meta.env.BASE_URL;
 useTexture.preload(`${baseUrl}textures/PORTADA.png`);
@@ -15,7 +15,7 @@ const BOOK_DEPTH = 0.1;
 const GAP = BOOK_WIDTH + 0.1;
 
 export const Experience = () => {
-    const [picture, pictureRoughness] = useTexture([`${baseUrl}textures/PORTADA.png`, `${baseUrl}textures/PORTADA_ROUGHNESS.png`]);
+    const [picture, _] = useTexture([`${baseUrl}textures/PORTADA.png`, `${baseUrl}textures/PORTADA_ROUGHNESS.png`]);
     picture.colorSpace = SRGBColorSpace;
 
     const bookGeometry = useMemo(() => RoundEdgedBoxFlat(BOOK_WIDTH, BOOK_HEIGHT, BOOK_DEPTH, .1, 10), []);

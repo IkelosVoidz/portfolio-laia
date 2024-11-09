@@ -3,6 +3,7 @@ import { Book } from './Book'
 import { DoubleSide, MeshBasicMaterial, MeshStandardMaterial, SRGBColorSpace, Vector3 } from 'three'
 import { useMemo } from 'react'
 import { RoundEdgedBoxFlat } from '../utils/utils'
+import { useThree } from '@react-three/fiber'
 // import { Text } from '@react-three/drei';
 
 const baseUrl = import.meta.env.BASE_URL;
@@ -12,9 +13,12 @@ useTexture.preload(`${baseUrl}textures/PORTADA_ROUGHNESS.png`);
 const BOOK_WIDTH = 1.28;
 const BOOK_HEIGHT = 1.71; // 4:3 aspect ratio
 const BOOK_DEPTH = 0.1;
-const GAP = BOOK_WIDTH + 0.1;
+const GAP = BOOK_WIDTH + 0.2;
 
 export const Experience = () => {
+
+    const { camera } = useThree();
+
     const [picture, _] = useTexture([`${baseUrl}textures/PORTADA.png`, `${baseUrl}textures/PORTADA_ROUGHNESS.png`]);
     picture.colorSpace = SRGBColorSpace;
 
@@ -48,11 +52,11 @@ export const Experience = () => {
                 shadow-mapSize-height={2048}
                 shadow-bias={-0.0001}
             />
-            <Book position={new Vector3(-GAP * 2, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} />
-            <Book position={new Vector3(-GAP, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} />
-            <Book position={new Vector3(0, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} />
-            <Book position={new Vector3(GAP, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} />
-            <Book position={new Vector3(GAP * 2, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} />
+            <Book position={new Vector3(-GAP * 2, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} cameraRef={camera} />
+            <Book position={new Vector3(-GAP, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} cameraRef={camera} />
+            <Book position={new Vector3(0, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} cameraRef={camera} />
+            <Book position={new Vector3(GAP, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} cameraRef={camera} />
+            <Book position={new Vector3(GAP * 2, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} cameraRef={camera} />
             {/* <Text
                 position={[0, 1.5, 0]}  // Position relative to the box
                 fontSize={0.5}            // Font size

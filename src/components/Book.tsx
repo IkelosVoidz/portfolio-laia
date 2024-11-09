@@ -22,8 +22,6 @@ const baseUrl = import.meta.env.BASE_URL
 
 export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraRef, onSelected, selected, ...props }) => {
 
-
-
     const [hovered, setHovered] = useState(false);
     const textRef = useRef<any>(); // Ref for the text object
 
@@ -46,7 +44,8 @@ export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraR
     return (
         <>
             <animated.mesh
-                castShadow
+                castShadow={!selected}
+
                 {...props}
                 onPointerEnter={(e) => {
                     e.stopPropagation();
@@ -66,7 +65,6 @@ export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraR
                 rotation={animatedRotation as any}
                 geometry={bookGeometry}
                 material={materials}
-
             />
             {
                 hovered && (

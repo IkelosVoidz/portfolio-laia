@@ -7,6 +7,21 @@ body {
   overflow: hidden;
 }
 
+@font-face {
+  font-family: 'TheSeasons';
+  src: url('/fonts/Fontspring-DEMO-theseasons-reg.ttf') format('truetype'); /* Development */
+}
+
+@font-face {
+  font-family: 'TheSeasons';
+  src: url('/portfolio-laia/fonts/Fontspring-DEMO-theseasons-reg.ttf') format('truetype');  /* Production */
+}
+
+body {
+  font-family: 'TheSeasons', sans-serif;
+  color : #fbbcad
+}
+
 body {
   background: url("/textures/background.png") no-repeat center center fixed;
   -webkit-background-size: cover;

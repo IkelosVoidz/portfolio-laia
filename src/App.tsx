@@ -2,9 +2,8 @@ import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
 import { Loader, Stats, OrbitControls } from '@react-three/drei';
 import { Experience } from './components/Experience';
+
 function App() {
-
-
 
     return (
         <>

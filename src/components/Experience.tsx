@@ -1,10 +1,9 @@
 import { Environment, useTexture } from '@react-three/drei'
 import { Book } from './Book'
 import { DoubleSide, MeshBasicMaterial, MeshStandardMaterial, SRGBColorSpace, Vector3 } from 'three'
-import { useMemo } from 'react'
+import { useMemo, useState } from 'react'
 import { RoundEdgedBoxFlat } from '../utils/utils'
 import { useThree } from '@react-three/fiber'
-// import { Text } from '@react-three/drei';
 
 const baseUrl = import.meta.env.BASE_URL;
 useTexture.preload(`${baseUrl}textures/PORTADA.png`);
@@ -16,7 +15,6 @@ const BOOK_DEPTH = 0.1;
 const GAP = BOOK_WIDTH + 0.2;
 
 export const Experience = () => {
-
     const { camera } = useThree();
 
     const [picture, _] = useTexture([`${baseUrl}textures/PORTADA.png`, `${baseUrl}textures/PORTADA_ROUGHNESS.png`]);
@@ -41,6 +39,8 @@ export const Experience = () => {
         })       // White rim
     ], []);
 
+    const [selectedBook, setSelectedBook] = useState<number>(-1);
+
     return (
         <>
             <Environment preset="studio" />
@@ -52,20 +52,18 @@ export const Experience = () => {
                 shadow-mapSize-height={2048}
                 shadow-bias={-0.0001}
             />
-            <Book position={new Vector3(-GAP * 2, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} cameraRef={camera} />
-            <Book position={new Vector3(-GAP, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} cameraRef={camera} />
-            <Book position={new Vector3(0, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} cameraRef={camera} />
-            <Book position={new Vector3(GAP, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} cameraRef={camera} />
-            <Book position={new Vector3(GAP * 2, .1, 0)} opened={true} bookGeometry={bookGeometry} materials={materials} cameraRef={camera} />
-            {/* <Text
-                position={[0, 1.5, 0]}  // Position relative to the box
-                fontSize={0.5}            // Font size
-                color="black"            // Text color
-                anchorX="center"         // Centering the text horizontally
-                anchorY="middle"         // Centering the text vertically
-            >
-                Hello, 3D World!
-            </Text> */}
+            {[...Array(5)].map((_, i) => (
+                <Book
+                    key={i}
+                    position={new Vector3(-GAP * 2 + i * GAP, .1, 0)}
+                    bookGeometry={bookGeometry}
+                    materials={materials}
+                    cameraRef={camera}
+                    onSelected={() => setSelectedBook(i)}
+                    selected={i === selectedBook}
+                />
+            ))}
+
 
 
             <mesh position-y={0} rotation-x={-Math.PI / 2} receiveShadow>

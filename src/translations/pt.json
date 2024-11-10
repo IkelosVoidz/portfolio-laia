@@ -1,0 +1,82 @@
+{
+    "close" : "Fechar",
+    "books" : [
+        {
+            "title" : "Collagem",
+            "content" : [
+                { 
+                    "imagePath" : "collage/1.png",
+                    "title" : "More than a century restless",
+                    "date" : "2023",
+                    "technique" : "Collagem",
+                    "size" : "20 x 14cm"
+                },
+                { 
+                    "imagePath" : "collage/2.png",
+                    "title" : "Royal",
+                    "date" : "2023",
+                    "technique" : "Collagem",
+                    "size" : "20 x 14cm"
+                }
+               
+               
+            ]
+        },
+        {
+            "title" : "Fotografia",
+            "content" : [
+                { 
+                    "imagePath" : "",
+                    "title" : "",
+                    "date" : "",
+                    "technique" : "",
+                    "size" : "20 x 14cm"
+                }
+               
+               
+            ]
+        },
+        {
+            "title" : "Desenho",
+            "content" : [
+                { 
+                    "imagePath" : "",
+                    "title" : "",
+                    "date" : "",
+                    "technique" : "",
+                    "size" : "20 x 14cm"
+                }
+                
+                
+            ]
+        },
+        {
+            "title" : "Pinturas",
+            "content" : [
+                { 
+                    "imagePath" : "",
+                    "title" : "",
+                    "date" : "",
+                    "technique" : "",
+                    "size" : "20 x 14cm"
+                }
+               
+               
+            ]
+        },
+        {
+            "title" : "Digital",
+            "content" : [
+                { 
+                    "imagePath" : "",
+                    "title" : "",
+                    "date" : "",
+                    "technique" : "",
+                    "size" : "20 x 14cm"
+                }         
+            ]
+        }
+
+    ]
+
+}

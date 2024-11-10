@@ -1,13 +1,25 @@
 import { Environment, useTexture } from '@react-three/drei'
 import { Book } from './Book'
-import { DoubleSide, MeshBasicMaterial, SRGBColorSpace, Vector3 } from 'three'
+import { DoubleSide, MathUtils, MeshBasicMaterial, SRGBColorSpace, Vector3 } from 'three'
 import { useMemo, useRef, useState } from 'react'
 import { RoundEdgedBoxFlat } from '../utils/utils'
 import { useFrame, useThree } from '@react-three/fiber'
+import ImageList from './ImageList';
+import { useTranslation } from 'react-i18next'
+
+import AnimatedButton from './AnimatedButton';
 
 const baseUrl = import.meta.env.BASE_URL;
 useTexture.preload(`${baseUrl}textures/PORTADA.png`);
-useTexture.preload(`${baseUrl}textures/PORTADA_ROUGHNESS.png`);
+
+const isDev = import.meta.env.MODE === 'development';
+const allImages = isDev
+    ? import.meta.glob('/images/**/*.{jpg,png,jpeg,webp}')
+    : import.meta.glob('/portfolio-laia/images/**/*.{jpg,png,jpeg,webp}');
+
+Object.keys(allImages).forEach(path =>
+    useTexture.preload(path)
+)
 
 const BOOK_WIDTH = 1.28;
 const BOOK_HEIGHT = 1.71; // 4:3 aspect ratio
@@ -16,8 +28,9 @@ const GAP = BOOK_WIDTH + 0.2;
 
 export const Experience = () => {
     const { camera } = useThree();
+    const { t } = useTranslation();
 
-    const [picture, _] = useTexture([`${baseUrl}textures/PORTADA.png`, `${baseUrl}textures/PORTADA_ROUGHNESS.png`]);
+    const [picture] = useTexture([`${baseUrl}textures/PORTADA.png`])
     const bookOpacity = useRef<number>(1)
     picture.colorSpace = SRGBColorSpace;
     const [selectedBook, setSelectedBook] = useState<number | null>(null);
@@ -28,44 +41,37 @@ export const Experience = () => {
     const bookGeometry = useMemo(() => RoundEdgedBoxFlat(BOOK_WIDTH, BOOK_HEIGHT, BOOK_DEPTH, .1, 10), []);
     const materials = useMemo(() => [
         new MeshBasicMaterial({
-            side: DoubleSide, // Front face with texture
+            side: DoubleSide,
             map: picture,
             toneMapped: false,
 
-        }),    // Front face with image
+        }),
         new MeshBasicMaterial({
             color: 0x444444,
-            side: DoubleSide, // Back face (dark color) with double-sided rendering
+            side: DoubleSide,
 
-        }),      // Dark back face
+        }),
         new MeshBasicMaterial({
-            color: 0xffbbcad, // Rim is single-sided
+            color: 0xffbbcad,
 
-        })       // White rim
-    ], [bookOpacity]);
-
-    // Update opacity on each frame
-    useFrame(() => {
-        // Interpolate opacity based on selectedBook
-        if (selectedBook === null) {
-            bookOpacity.current = Math.min(1, bookOpacity.current + 0.05) // Fade in
-        } else {
-            bookOpacity.current = Math.max(0, bookOpacity.current - 0.05) // Fade out
-        }
-
-        // Apply the updated opacity to the materials
-        materials.forEach(material => {
-            material.transparent = true // Make sure transparency is enabled
-            material.opacity = bookOpacity.current
         })
+    ], []);
 
 
-        if (bookOpacity.current <= 0 && !bookFadeOutComplete) {
+    useFrame(() => {
+        const targetOpacity = selectedBook === null ? 1 : 0;
+        bookOpacity.current = MathUtils.lerp(bookOpacity.current, targetOpacity, 0.2);
+
+        materials.forEach(material => {
+            material.transparent = true;
+            material.opacity = bookOpacity.current;
+        });
+        if (Math.abs(bookOpacity.current - 0) < 0.01 && !bookFadeOutComplete) {
             setBookFadeOutComplete(true)
-        } else if (bookOpacity.current > 0 && bookFadeOutComplete) {
+        } else if (bookOpacity.current > 0.01 && bookFadeOutComplete) {
             setBookFadeOutComplete(false)
         }
-    })
+    });
     return (
         <>
             <Environment preset="studio" />
@@ -78,11 +84,13 @@ export const Experience = () => {
                 shadow-bias={-0.0001}
             />
 
+
             {
                 !bookFadeOutComplete &&
                 [...Array(5)].map((_, i) => (
                     <Book
                         key={i}
+                        title={t(`books.${i}.title`)}
                         position={new Vector3(-GAP * 2 + i * GAP, .1, 0)}
                         bookGeometry={bookGeometry}
                         materials={materials}
@@ -91,8 +99,16 @@ export const Experience = () => {
                         selected={selectedBook !== null}
                     />
                 ))
+
             }
 
+            {selectedBook !== null &&
+                <ImageList bookSelected={selectedBook} onClose={() => setSelectedBook(null)} />
+            }
+
+            {selectedBook === null &&
+                <AnimatedButton inCanvas iconUrl={`${baseUrl}icons/STAR.svg`} buttonText={'INFO'} style={{ position: 'absolute', bottom: 20, left: 30 }} onClick={() => console.log('info')
+                } />}
 
             <mesh position-y={0} rotation-x={-Math.PI / 2} receiveShadow>
                 <planeGeometry args={[100, 100]} />

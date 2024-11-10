@@ -10,6 +10,7 @@ import {
 } from "three";
 import { useSpring, animated } from "@react-spring/three";
 interface BookProps {
+    title: string,
     position: Vector3,
     bookGeometry: BufferGeometry<NormalBufferAttributes>,
     materials: Material[],
@@ -20,7 +21,7 @@ interface BookProps {
 
 const baseUrl = import.meta.env.BASE_URL
 
-export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraRef, onSelected, selected, ...props }) => {
+export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraRef, onSelected, selected, title, ...props }) => {
 
     const [hovered, setHovered] = useState(false);
     const textRef = useRef<any>(); // Ref for the text object
@@ -69,6 +70,7 @@ export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraR
             {
                 hovered && (
                     <Billboard
+
                         follow={true}
                         lockX={false}
                         lockY={false}
@@ -85,8 +87,8 @@ export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraR
                             anchorX="center"
                             anchorY="middle"
                         >
-                            Hovered Book
-                            <animated.meshStandardMaterial attach="material" opacity={textSpring.opacity} />
+                            {title}
+                            <animated.meshBasicMaterial attach="material" opacity={textSpring.opacity} />
                         </Text>
                     </Billboard>
                 )

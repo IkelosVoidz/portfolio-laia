@@ -79,7 +79,7 @@ export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraR
                         <Text
 
                             font={`${baseUrl}fonts/Fontspring-DEMO-theseasons-reg.ttf`}
-
+                            characters="abcdefghijklmnopqrstuvwxyz"
                             ref={textRef}
                             position={[position.x, position.y + 1.2, position.z + .3]} // Adjusted position above the book
                             fontSize={.2} // Text size

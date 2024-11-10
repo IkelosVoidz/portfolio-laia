@@ -16,6 +16,9 @@ i18n
     load: 'languageOnly',
     fallbackLng: 'en',
     debug: true,
+    react: {
+      useSuspense: false
+    },
     interpolation: {
       escapeValue: false
     }

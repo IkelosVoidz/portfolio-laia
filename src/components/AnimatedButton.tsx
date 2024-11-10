@@ -43,7 +43,7 @@ const AnimatedButton: FC<{ iconUrl?: string, buttonText: string, textSize?: stri
             {!inCanvas ? (
                 btnContent
             ) : (
-                <Html fullscreen>
+                <Html zIndexRange={[999, 0]} fullscreen>
                     {btnContent}
                 </Html>
             )}

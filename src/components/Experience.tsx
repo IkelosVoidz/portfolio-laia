@@ -1,4 +1,4 @@
-import { Environment, useTexture } from '@react-three/drei'
+import { Environment, useFont, useTexture } from '@react-three/drei'
 import { Book } from './Book'
 import { DoubleSide, MathUtils, MeshBasicMaterial, SRGBColorSpace, Vector3 } from 'three'
 import { useMemo, useRef, useState } from 'react'
@@ -11,15 +11,13 @@ import AnimatedButton from './AnimatedButton';
 
 const baseUrl = import.meta.env.BASE_URL;
 useTexture.preload(`${baseUrl}textures/PORTADA.png`);
+useFont.preload(`${baseUrl}fonts/Fontspring-DEMO-theseasons-reg.ttf`);
+[...Array(6).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/collage/${i}.png`));
+[...Array(18).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/dibuix/${i}.png`));
+[...Array(7).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/digital/${i}.png`));
+[...Array(10).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/foto/${i}.png`));
+[...Array(13).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/pintura/${i}.png`));
 
-const isDev = import.meta.env.MODE === 'development';
-const allImages = isDev
-    ? import.meta.glob('/images/**/*.{jpg,png,jpeg,webp}')
-    : import.meta.glob('/portfolio-laia/images/**/*.{jpg,png,jpeg,webp}');
-
-Object.keys(allImages).forEach(path =>
-    useTexture.preload(path)
-)
 
 const BOOK_WIDTH = 1.28;
 const BOOK_HEIGHT = 1.71; // 4:3 aspect ratio
@@ -83,8 +81,6 @@ export const Experience = () => {
                 shadow-mapSize-height={2048}
                 shadow-bias={-0.0001}
             />
-
-
             {
                 !bookFadeOutComplete &&
                 [...Array(5)].map((_, i) => (
@@ -102,12 +98,12 @@ export const Experience = () => {
 
             }
 
-            {selectedBook !== null &&
-                <ImageList bookSelected={selectedBook} onClose={() => setSelectedBook(null)} />
+            {(selectedBook !== null) &&
+                <ImageList cameraRef={camera} selectedBook={selectedBook} onClose={() => setSelectedBook(null)} />
             }
 
             {selectedBook === null &&
-                <AnimatedButton inCanvas iconUrl={`${baseUrl}icons/STAR.svg`} buttonText={'INFO'} style={{ position: 'absolute', bottom: 20, left: 30 }} onClick={() => console.log('info')
+                <AnimatedButton inCanvas iconUrl={`${baseUrl}icons/STAR.svg`} buttonText={'INFO'} style={{ position: 'absolute', bottom: 20, left: 30, zIndex: 10 }} onClick={() => console.log('info')
                 } />}
 
             <mesh position-y={0} rotation-x={-Math.PI / 2} receiveShadow>

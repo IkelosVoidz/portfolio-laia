@@ -5,14 +5,14 @@
             "title" : "Collage",
             "content" : [
                 { 
-                    "imagePath" : "collage/1.png",
+                    "imagePath" : "collage/1",
                     "title" : "More than a century restless",
                     "date" : "2023",
                     "technique" : "Collage",
                     "size" : "20 x 14cm"
                 },
                 { 
-                    "imagePath" : "collage/2.png",
+                    "imagePath" : "collage/2",
                     "title" : "Royal",
                     "date" : "2023",
                     "technique" : "Collage",

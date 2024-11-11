@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
-import { Loader, Stats, OrbitControls, Preload } from '@react-three/drei';
+import { Loader, Stats, OrbitControls } from '@react-three/drei';
 import { Experience } from './components/Experience';
 import AnimatedButton from './components/AnimatedButton';
 import { useTranslation } from "react-i18next";
@@ -27,7 +27,7 @@ function App() {
                 )}
                 <Suspense>
                     <Experience />
-                    <Preload all />
+
                 </Suspense>
             </Canvas>
             <Loader />

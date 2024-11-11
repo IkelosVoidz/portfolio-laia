@@ -81,9 +81,9 @@ export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraR
                             font={`${baseUrl}fonts/Fontspring-DEMO-theseasons-reg.ttf`}
                             characters="abcdefghijklmnopqrstuvwxyz"
                             ref={textRef}
-                            position={[position.x, position.y + 1.2, position.z + .3]} // Adjusted position above the book
-                            fontSize={.2} // Text size
-                            color="#fbbcad" // Text color
+                            position={[position.x, position.y + 1.2, position.z + .3]}
+                            fontSize={.2}
+                            color="#fbbcad"
                             anchorX="center"
                             anchorY="middle"
                         >

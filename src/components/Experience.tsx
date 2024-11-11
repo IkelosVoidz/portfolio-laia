@@ -12,11 +12,11 @@ import AnimatedButton from './AnimatedButton';
 const baseUrl = import.meta.env.BASE_URL;
 useTexture.preload(`${baseUrl}textures/PORTADA.png`);
 useFont.preload(`${baseUrl}fonts/Fontspring-DEMO-theseasons-reg.ttf`);
-[...Array(6).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/collage/${i}.png`));
-[...Array(18).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/dibuix/${i}.png`));
-[...Array(7).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/digital/${i}.png`));
-[...Array(10).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/foto/${i}.png`));
-[...Array(13).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/pintura/${i}.png`));
+// [...Array(6).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/collage/${i}.png`));
+// [...Array(18).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/dibuix/${i}.png`));
+// [...Array(7).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/digital/${i}.png`));
+// [...Array(10).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/foto/${i}.png`));
+// [...Array(13).keys()].forEach((i) => useTexture.preload(`${baseUrl}images/pintura/${i}.png`));
 
 
 const BOOK_WIDTH = 1.28;

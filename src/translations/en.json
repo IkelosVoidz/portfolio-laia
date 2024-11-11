@@ -5,21 +5,47 @@
             "title" : "Collage",
             "content" : [
                 { 
-                    "imagePath" : "collage/1",
+                    "imagePath" : "collage/0",
                     "title" : "More than a century restless",
                     "date" : "2023",
                     "technique" : "Collage",
                     "size" : "20 x 14cm"
                 },
                 { 
-                    "imagePath" : "collage/2",
+                    "imagePath" : "collage/1",
                     "title" : "Royal",
                     "date" : "2023",
                     "technique" : "Collage",
                     "size" : "20 x 14cm"
+                },
+                { 
+                    "imagePath" : "collage/2",
+                    "title" : "",
+                    "date" : "",
+                    "technique" : "",
+                    "size" : "20 x 14cm"
+                },
+                { 
+                    "imagePath" : "collage/3",
+                    "title" : "",
+                    "date" : "",
+                    "technique" : "",
+                    "size" : "20 x 14cm"
+                },
+                { 
+                    "imagePath" : "collage/4",
+                    "title" : "",
+                    "date" : "",
+                    "technique" : "",
+                    "size" : "20 x 14cm"
+                },
+                { 
+                    "imagePath" : "collage/5",
+                    "title" : "",
+                    "date" : "",
+                    "technique" : "",
+                    "size" : "20 x 14cm"
                 }
-               
-               
             ]
         },
         {

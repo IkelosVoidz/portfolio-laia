@@ -1,9 +1,10 @@
 import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
-import { Loader, Stats, OrbitControls } from '@react-three/drei';
+import { Stats, OrbitControls } from '@react-three/drei';
 import { Experience } from './components/Experience';
 import AnimatedButton from './components/AnimatedButton';
 import { useTranslation } from "react-i18next";
+import Spinner from "./components/Spinner";
 function App() {
 
     const { i18n } = useTranslation();
@@ -25,12 +26,10 @@ function App() {
                         <Stats />
                     </>
                 )}
-                <Suspense>
+                <Suspense fallback={<Spinner />}>
                     <Experience />
-
                 </Suspense>
             </Canvas>
-            <Loader />
         </>)
 }
 

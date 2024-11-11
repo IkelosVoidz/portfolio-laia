@@ -1,6 +1,6 @@
 
 import { useCursor, Text, Billboard } from "@react-three/drei";
-import { FC, useRef, useState } from "react";
+import { FC, Suspense, useRef, useState } from "react";
 import {
     BufferGeometry,
     Camera,
@@ -68,7 +68,8 @@ export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraR
                 material={materials}
             />
             {
-                hovered && (
+                <Suspense fallback={null}>
+                    hovered && (
                     <Billboard
 
                         follow={true}
@@ -91,7 +92,8 @@ export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraR
                             <animated.meshBasicMaterial attach="material" opacity={textSpring.opacity} />
                         </Text>
                     </Billboard>
-                )
+                    )
+                </Suspense>
             }
         </>
 

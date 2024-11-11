@@ -1,6 +1,6 @@
 import { animated, useSpring } from "@react-spring/web"
 import { Html } from "@react-three/drei"
-import { FC, useMemo, useState } from "react";
+import { FC, Suspense, useMemo, useState } from "react";
 
 
 const AnimatedButton: FC<{ iconUrl?: string, buttonText: string, textSize?: string, style?: React.CSSProperties, inCanvas?: boolean, onClick: () => void }> = ({ iconUrl, inCanvas, textSize, buttonText, style, onClick }) => {
@@ -40,13 +40,15 @@ const AnimatedButton: FC<{ iconUrl?: string, buttonText: string, textSize?: stri
 
     return (
         <>
-            {!inCanvas ? (
-                btnContent
-            ) : (
-                <Html zIndexRange={[999, 0]} fullscreen>
-                    {btnContent}
-                </Html>
-            )}
+            <Suspense fallback={null}>
+                {!inCanvas ? (
+                    btnContent
+                ) : (
+                    <Html zIndexRange={[999, 0]} fullscreen>
+                        {btnContent}
+                    </Html>
+                )}
+            </Suspense>
         </>
     )
 }

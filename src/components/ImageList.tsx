@@ -1,11 +1,15 @@
 import { FC, Suspense, useMemo, useState } from 'react'
-import { Html, Plane, useTexture } from '@react-three/drei'
-import { Camera, MeshBasicMaterial, Texture } from 'three'
+import { useTexture } from '@react-three/drei'
+import { Camera, Texture } from 'three'
 import AnimatedButton from './AnimatedButton'
 import { useTranslation } from 'react-i18next'
 import { Book } from '../utils/interfaces'
+import Spinner from './Spinner'
+import Backdrop from './Backdrop'
 
 const baseUrl = import.meta.env.BASE_URL
+const TARGET_HEIGHT = 1.8;
+const GAP = 0.6;
 
 interface ImagePageProps {
     index: number,
@@ -16,25 +20,16 @@ interface ImagePageProps {
 
 const ImagePage: FC<ImagePageProps> = ({ cameraXRotation, xPosition, texture }) => {
     const { width, height } = texture.image;
-    const targetHeight = 1.5;
     const aspectRatio = width / height;
-    const targetWidth = targetHeight * aspectRatio;
+    const targetWidth = TARGET_HEIGHT * aspectRatio;
 
     return (
         <mesh position={[xPosition, .6, 0]} rotation={[cameraXRotation, 0, 0]}>
-            <boxGeometry args={[targetWidth, targetHeight, 0.01]} />
+            <boxGeometry args={[targetWidth, TARGET_HEIGHT, 0.01]} />
             <meshBasicMaterial map={texture} />
         </mesh>
     )
 }
-
-const Loader = () => (
-    <Html center>
-        <div className="spinner-border" style={{ width: '50px', height: '50px' }} role="status">
-            <span className="visually-hidden">Loading...</span>
-        </div>
-    </Html>
-);
 
 interface ImageListProps {
     selectedBook: number
@@ -43,11 +38,7 @@ interface ImageListProps {
 }
 
 const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => {
-    const material = useMemo(() => new MeshBasicMaterial({
-        color: 'black',
-        transparent: true,
-        opacity: 0.6,
-    }), [])
+
 
     const { t, i18n } = useTranslation()
     const [imagePaths, setImagePaths] = useState<string[]>([]);
@@ -61,15 +52,14 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
 
     const calculatePositions = (textures: Texture[]): number[] => {
         let accPosition = 0;
-        const gap = 0.4;
 
         return textures.map((tex, index) => {
             const aspectRatio = tex.image.width / tex.image.height;
-            const targetHeight = 1.5;
-            const targetWidth = targetHeight * aspectRatio;
+
+            const targetWidth = TARGET_HEIGHT * aspectRatio;
             const position = index === 0 ? 0 : accPosition + targetWidth / 2;
 
-            accPosition += (targetWidth * ((index === 0) ? .5 : 1)) + gap;
+            accPosition += (targetWidth * ((index === 0) ? .5 : 1)) + GAP;
 
             return position;
         });
@@ -77,14 +67,9 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
 
     return (
         <>
-            <Plane
-                args={[100, 100]} // Large size to cover the background
-                material={material}
-                rotation={[-Math.PI / 2, 0, 0]}
-                position={[0, 0.5, 0]}
-            />
 
-            <Suspense fallback={<Loader />}>
+            <Backdrop />
+            <Suspense fallback={<Spinner />}>
                 {(() => {
                     const textures = useTexture(imagePaths);
                     const xPositions = calculatePositions(textures);

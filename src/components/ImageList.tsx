@@ -116,7 +116,7 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
                 ))}
             </Suspense>
 
-            <Html fullscreen zIndexRange={[0, 999]}>
+            <Html fullscreen zIndexRange={[0, 10000]}>
                 <div style={{ position: 'absolute', bottom: 20, left: '50%', transform: 'translateX(-50%)', zIndex: 998 }}>
                     <div className='d-flex flex-row justify-content-between align-items-center'>
                         <AnimatedButton

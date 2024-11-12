@@ -10,9 +10,6 @@ const AnimatedButton: FC<{ iconUrl?: string, buttonText: string, textSize?: stri
         transform: hovered ? 'scale(1.1)' : 'scale(1)',
     });
 
-    console.log('rerender');
-
-
     const btnContent = (
 
         <div style={{ ...style }}>

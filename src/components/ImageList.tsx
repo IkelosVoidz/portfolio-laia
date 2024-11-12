@@ -6,6 +6,9 @@ import { useTranslation } from 'react-i18next'
 import { Book, BookContent } from '../utils/interfaces'
 import Spinner from './Spinner'
 import Backdrop from './Backdrop'
+import { a, SpringValue, useSprings } from '@react-spring/three'
+import { a as aWeb, useSpring } from '@react-spring/web'
+
 
 const baseUrl = import.meta.env.BASE_URL
 const TARGET_HEIGHT = 1.8
@@ -14,7 +17,7 @@ const GAP = 0.6
 interface ImagePageProps {
     index: number
     cameraXRotation: number
-    xPosition: number
+    xPosition: SpringValue<number>
     texture: Texture
 }
 
@@ -24,10 +27,10 @@ const ImagePage: FC<ImagePageProps> = ({ cameraXRotation, xPosition, texture }) 
     const targetWidth = TARGET_HEIGHT * aspectRatio
 
     return (
-        <mesh position={[xPosition, 0.6, 0]} rotation={[cameraXRotation, 0, 0]}>
+        <a.mesh position-x={xPosition} position-y={0.6} position-z={0} rotation={[cameraXRotation, 0, 0]}>
             <boxGeometry args={[targetWidth, TARGET_HEIGHT, 0.01]} />
             <meshBasicMaterial map={texture} />
-        </mesh>
+        </a.mesh>
     )
 }
 
@@ -67,17 +70,36 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
     const textures = useTexture(imagePaths.current)
     const xPositions = useMemo(() => calculatePositions(textures), [textures, currentIndex])
 
+    // Define springs for animated positions
+    const [springs, api] = useSprings(textures.length, (index) => ({
+        x: xPositions[index] - xPositions[currentIndex],
+        config: { mass: 1, tension: 170, friction: 26 },
+    }))
+
     const prevImage = () => {
         if (currentIndex > 0) {
-            setCurrentIndex((prev) => prev - 1)
+            setCurrentIndex((prev) => {
+                const newIndex = prev - 1
+                api.start((index) => ({
+                    x: xPositions[index] - xPositions[newIndex]
+                }))
+                return newIndex
+            })
         }
     }
 
     const nextImage = () => {
         if (currentIndex < textures.length - 1) {
-            setCurrentIndex((prev) => prev + 1)
+            setCurrentIndex((prev) => {
+                const newIndex = prev + 1
+                api.start((index) => ({
+                    x: xPositions[index] - xPositions[newIndex]
+                }))
+                return newIndex
+            })
         }
     }
+
 
     return (
         <>
@@ -88,7 +110,7 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
                         key={index}
                         cameraXRotation={cameraRef.rotation.x}
                         index={index}
-                        xPosition={xPositions[index] - xPositions[currentIndex]}
+                        xPosition={springs[index].x}
                         texture={tex}
                     />
                 ))}
@@ -128,13 +150,21 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
 
 
 const ImageInfo: FC<{ bookContent: BookContent }> = ({ bookContent }) => {
+    // Animation directly in useSpring
+    const styles = useSpring({
+        from: { opacity: 0 },
+        to: { opacity: 1 },
+        reset: true, // Ensures it replays each time bookContent changes
+        config: { tension: 120, friction: 14 },
+    })
+
     return (
-        <div className='text-start fitxa-tecnica text-nowrap'>
+        <aWeb.div style={styles} className='text-start fitxa-tecnica text-nowrap'>
             <h5>{bookContent.title}</h5>
             <h5>{bookContent.date}</h5>
             <h5>{bookContent.technique}</h5>
             <h5>{bookContent.size}</h5>
-        </div>
+        </aWeb.div>
     )
 }
 

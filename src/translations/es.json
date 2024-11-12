@@ -4,76 +4,137 @@
         {
             "title" : "Collage",
             "content" : [
-               { 
-                    "imagePath" : "collage/0",
-                    "title" : "More than a century restless",
-                    "date" : "2023",
-                    "technique" : "Collage",
-                    "size" : "20 x 14cm"
+                {
+                    "imagePath": "collage/0",
+                    "title": "Y con lágrimas en los ojos, espera volver a verla…",
+                    "date": "2024",
+                    "technique": "Collage",
+                    "size": "20 x 14 cm"
                 },
-                { 
-                    "imagePath" : "collage/1",
-                    "title" : "Royal",
-                    "date" : "2023",
-                    "technique" : "Collage",
-                    "size" : "20 x 14cm"
+                {
+                    "imagePath": "collage/1",
+                    "title": "Royal",
+                    "date": "2024",
+                    "technique": "Collage",
+                    "size": "20 x 14 cm"
                 },
-                { 
-                    "imagePath" : "collage/2",
-                    "title" : "",
-                    "date" : "",
-                    "technique" : "",
-                    "size" : "20 x 14cm"
+                {
+                    "imagePath": "collage/2",
+                    "title": "Ahogarse",
+                    "date": "2023",
+                    "technique": "Collage",
+                    "size": "20 x 14 cm"
                 },
-                { 
-                    "imagePath" : "collage/3",
-                    "title" : "",
-                    "date" : "",
-                    "technique" : "",
-                    "size" : "20 x 14cm"
+                {
+                    "imagePath": "collage/3",
+                    "title": "Más de un siglo inquieta",
+                    "date": "2023",
+                    "technique": "Collage",
+                    "size": "20 x 14 cm"
                 },
-                { 
-                    "imagePath" : "collage/4",
-                    "title" : "",
-                    "date" : "",
-                    "technique" : "",
-                    "size" : "20 x 14cm"
+                {
+                    "imagePath": "collage/4",
+                    "title": "Mahou",
+                    "date": "2024",
+                    "technique": "Collage",
+                    "size": "20 x 14 cm"
                 },
-                { 
-                    "imagePath" : "collage/5",
-                    "title" : "",
-                    "date" : "",
-                    "technique" : "",
-                    "size" : "20 x 14cm"
+                {
+                    "imagePath": "collage/5",
+                    "title": "A veces buscamos las cosas correctas en los lugares incorrectos",
+                    "date": "2022",
+                    "technique": "Collage",
+                    "size": "11,5 x 23 cm"
                 }
             ]
         },
-        {
-            "title" : "Fotografia",
-            "content" : [
-                { 
-                    "imagePath" : "",
-                    "title" : "",
-                    "date" : "",
-                    "technique" : "",
-                    "size" : "20 x 14cm"
+       {
+            "title": "Dibujo",
+            "content": [
+                {
+                    "imagePath": "dibuix/0",
+                    "title": "Retrato",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11’5 x 11’5 cm"
+                },
+                {
+                    "imagePath": "dibuix/1",
+                    "title": "Bar de la Plaza del Pino",
+                    "date": "2023",
+                    "technique": "Lápices de colores",
+                    "size": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "dibuix/2",
+                    "title": "Lo tiene muy claro",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11’5 x 11’5 cm"
+                },
+                {
+                    "imagePath": "dibuix/3",
+                    "title": "¿Qué más podría dibujar?",
+                    "date": "2023",
+                    "technique": "Lápices de colores",
+                    "size": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "dibuix/4",
+                    "title": "Retrato con humo",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11’5 x 11’5 cm"
+                },
+                {
+                    "imagePath": "dibuix/5",
+                    "title": "Tiburón",
+                    "date": "2023",
+                    "technique": "Lápices de colores",
+                    "size": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "dibuix/6",
+                    "title": "Alguno de estos días",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11’5 x 11’5 cm"
+                },
+                {
+                    "imagePath": "dibuix/7",
+                    "title": "A veces olvido que mi abuela tenía madre",
+                    "date": "2023",
+                    "technique": "Lápices de colores",
+                    "size": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "dibuix/8",
+                    "title": "Mauricio",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11’5 x 11’5 cm"
+                },
+                {
+                    "imagePath": "dibuix/9",
+                    "title": "¿Está bien esto?",
+                    "date": "2023",
+                    "technique": "Bolígrafo",
+                    "size": "14 x 20 cm"
+                },
+                {
+                    "imagePath": "dibuix/10",
+                    "title": "Retrato con serpiente",
+                    "date": "2024",
+                    "technique": "Lápiz i lápices de colores",
+                    "size": "11’5 x 23 cm"
+                },
+                {
+                    "imagePath": "dibuix/11",
+                    "title": "Autorretrato",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11’5 x 11’5 cm"
                 }
-               
-               
-            ]
-        },
-        {
-            "title" : "Dibujo",
-            "content" : [
-                { 
-                    "imagePath" : "",
-                    "title" : "",
-                    "date" : "",
-                    "technique" : "",
-                    "size" : "20 x 14cm"
-                }
-                
-                
             ]
         },
         {
@@ -87,22 +148,138 @@
                     "size" : "20 x 14cm"
                 }
                
-               
+                
             ]
         },
         {
-            "title" : "Digital",
-            "content" : [
-                { 
-                    "imagePath" : "",
-                    "title" : "",
-                    "date" : "",
-                    "technique" : "",
-                    "size" : "20 x 14cm"
-                }         
+            "title": "Fotografía",
+            "content": [
+                {
+                    "imagePath": "foto/0",
+                    "title": "Retrato",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11.5 x 11.5 cm"
+                },
+                {
+                    "imagePath": "foto/1",
+                    "title": "Bar de la Plaza del Pino",
+                    "date": "2023",
+                    "technique": "Lápices de colores",
+                    "size": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "foto/2",
+                    "title": "Lo tiene muy claro",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11.5 x 11.5 cm"
+                },
+                {
+                    "imagePath": "foto/3",
+                    "title": "Bar de la Plaza del Pino",
+                    "date": "2023",
+                    "technique": "Lápices de colores",
+                    "size": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "foto/4",
+                    "title": "Retrato con humo",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11.5 x 11.5 cm"
+                },
+                {
+                    "imagePath": "foto/5",
+                    "title": "Tiburón",
+                    "date": "2023",
+                    "technique": "Lápices de colores",
+                    "size": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "foto/6",
+                    "title": "Alguno de estos días",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11.5 x 11.5 cm"
+                },
+                {
+                    "imagePath": "foto/7",
+                    "title": "A veces olvido que mi abuela tenía madre",
+                    "date": "2023",
+                    "technique": "Lápices de colores",
+                    "size": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "foto/8",
+                    "title": "Mauricio",
+                    "date": "2024",
+                    "technique": "Lápiz",
+                    "size": "11.5 x 11.5 cm"
+                },
+                {
+                    "imagePath": "foto/9",
+                    "title": "¿Está bien esto?",
+                    "date": "2023",
+                    "technique": "Bolígrafo",
+                    "size": "14 x 20 cm"
+                }
+            ]
+        },
+       {
+            "title": "Digital",
+            "content": [
+                {
+                    "imagePath": "digital/0",
+                    "title": "Escaneando",
+                    "date": "2024",
+                    "technique": "Procreate",
+                    "size": "1620 x 2160 px"
+                },
+                {
+                    "imagePath": "digital/1",
+                    "title": "Peluche",
+                    "date": "2024",
+                    "technique": "Procreate",
+                    "size": "1620 x 2160 px"
+                },
+                {
+                    "imagePath": "digital/2",
+                    "title": "Amigos espías",
+                    "date": "2024",
+                    "technique": "Procreate",
+                    "size": "2480 x 3508 px"
+                },
+                {
+                    "imagePath": "digital/3",
+                    "title": "Sobrecarga",
+                    "date": "2023",
+                    "technique": "Procreate",
+                    "size": "2480 x 3508 px"
+                },
+                {
+                    "imagePath": "digital/4",
+                    "title": "Retrato",
+                    "date": "2024",
+                    "technique": "Procreate",
+                    "size": "3273 x 2455 px"
+                },
+                {
+                    "imagePath": "digital/5",
+                    "title": "Retrato familiar",
+                    "date": "2024",
+                    "technique": "Procreate",
+                    "size": "1620 x 2160 px"
+                },
+                {
+                    "imagePath": "digital/6",
+                    "title": "Eres tú",
+                    "date": "2024",
+                    "technique": "Procreate",
+                    "size": "2160 x 1620 px"
+                }
             ]
         }
-
     ]
 
 }

@@ -45,7 +45,7 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
     // Load image paths on language change
     const bookConfig = useMemo(() => {
         const config = t(`books.${selectedBook}`, { returnObjects: true }) as Book
-        const imgPaths = config.content.map((image) => `${baseUrl}images/${image.imagePath}.png`)
+        const imgPaths = config.content.map((image) => `${baseUrl}images/${image.imagePath}.jpg`)
         imagePaths.current = imgPaths
         return config;
     }, [i18n.language, selectedBook])

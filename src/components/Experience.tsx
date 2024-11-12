@@ -1,4 +1,4 @@
-import { Environment, Html, useTexture, Loader } from '@react-three/drei'
+import { Environment, useTexture } from '@react-three/drei'
 import { Book } from './Book'
 import { DoubleSide, MeshBasicMaterial, SRGBColorSpace, Vector3 } from 'three'
 import { Suspense, useMemo, useState } from 'react'
@@ -56,24 +56,24 @@ export const Experience = () => {
                 shadow-mapSize-height={2048}
                 shadow-bias={-0.0001}
             />
-            <Suspense fallback={<Html><Loader /></Html>}>
-                {
-                    selectedBook === null &&
-                    [...Array(5)].map((_, i) => (
-                        <Book
-                            key={i}
-                            title={t(`books.${i}.title`)}
-                            position={new Vector3(-GAP * 2 + i * GAP, .1, 0)}
-                            bookGeometry={bookGeometry}
-                            materials={materials}
-                            cameraRef={camera}
-                            onSelected={() => setSelectedBook(i)}
-                            selected={selectedBook !== null}
-                        />
-                    ))
 
-                }
-            </Suspense>
+            {
+                selectedBook === null &&
+                [...Array(5)].map((_, i) => (
+                    <Book
+                        key={i}
+                        title={t(`books.${i}.title`)}
+                        position={new Vector3(-GAP * 2 + i * GAP, .1, 0)}
+                        bookGeometry={bookGeometry}
+                        materials={materials}
+                        cameraRef={camera}
+                        onSelected={() => setSelectedBook(i)}
+                        selected={selectedBook !== null}
+                    />
+                ))
+
+            }
+
 
             <Suspense fallback={<Spinner />}>
                 {(selectedBook !== null) &&

@@ -5,17 +5,32 @@ import { Experience } from './components/Experience';
 import AnimatedButton from './components/AnimatedButton';
 import { useTranslation } from "react-i18next";
 import Spinner from "./components/Spinner";
+
+const languages = [
+    { code: 'en', label: 'EN' },
+    { code: 'es', label: 'ES' },
+    { code: 'ca', label: 'CAT' },
+    { code: 'pt', label: 'PT' }
+];
+
 function App() {
 
     const { i18n } = useTranslation();
+    const currentLanguage = i18n.language
 
     return (
         <>
             <div className="d-flex flex-row justify-content-between align-items-center" style={{ position: 'absolute', top: 20, right: 20, zIndex: 999 }}>
-                <AnimatedButton buttonText="EN" onClick={() => { i18n.changeLanguage('en') }} />
-                <AnimatedButton buttonText="ES" onClick={() => { i18n.changeLanguage('es') }} />
-                <AnimatedButton buttonText="CAT" onClick={() => { i18n.changeLanguage('ca') }} />
-                <AnimatedButton buttonText="PT" onClick={() => { i18n.changeLanguage('pt') }} />
+                {languages.map(lang => (
+                    <AnimatedButton
+                        key={lang.code}
+                        buttonText={lang.label}
+                        onClick={() => { i18n.changeLanguage(lang.code) }}
+                        style={{
+                            borderBottom: currentLanguage === lang.code ? '3px solid #fbbcad' : 'none'
+                        }}
+                    />
+                ))}
             </div>
             <Canvas shadows camera={{ position: [0, 2.5, .2], fov: 80 }}>
                 {import.meta.env.MODE === "development" && (

@@ -1,19 +1,18 @@
+import { infoPageOpenAtom, selectedBookAtom } from "../utils/utils";
+import { useAtom } from "jotai";
+import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import AnimatedButton from "./AnimatedButton";
-import { useAtom } from "jotai";
-import { infoPageOpenAtom, selectedBookAtom } from "../utils/utils";
 import InfoPage from "./InfoPage";
-import { useState } from "react";
 
 const languages = [
+    { code: 'ca', label: 'CAT' },
     { code: 'en', label: 'EN' },
     { code: 'es', label: 'ES' },
-    { code: 'ca', label: 'CAT' },
     { code: 'pt', label: 'PT' }
 ];
 
 const baseUrl = import.meta.env.BASE_URL;
-
 const darkColor = '#292830';
 
 const UI = () => {
@@ -24,13 +23,11 @@ const UI = () => {
     const [infoPageOpen, setInfoPageOpen] = useAtom(infoPageOpenAtom);
     const [infoPageAnimating, setInfoPageAnimating] = useState(false);
 
-
     return (
         <>
             <div className="container-fluid h-100">
                 <div className="row h-100">
                     <div className="d-flex flex-row justify-content-betweens py-2">
-
                         <div className="align-self-end"> {selectedBook === null &&
                             <AnimatedButton
                                 iconUrl={`${baseUrl}icons/STAR.svg`}
@@ -47,7 +44,6 @@ const UI = () => {
                                     buttonText={lang.label}
                                     onClick={() => { i18n.changeLanguage(lang.code) }}
                                     style={{
-
                                         borderBottom: currentLanguage === lang.code ? `3px solid ${infoPageOpen ? darkColor : ''}` : 'none',
                                         pointerEvents: 'auto'
                                     }}
@@ -59,7 +55,6 @@ const UI = () => {
                 </div>
             </div>
             {(infoPageOpen || infoPageAnimating) &&
-
                 <InfoPage
                     isOpen={infoPageOpen}
                     onClose={() => {

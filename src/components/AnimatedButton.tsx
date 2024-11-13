@@ -1,9 +1,19 @@
 import { animated, useSpring } from "@react-spring/web"
-import { Html } from "@react-three/drei"
 import { FC, Suspense, useState } from "react";
+import { Html } from "@react-three/drei"
 
+interface AnimatedButtonProps {
+    buttonText: string,
+    color?: String,
+    disabled?: boolean
+    iconUrl?: string,
+    inCanvas?: boolean,
+    onClick: () => void,
+    style?: React.CSSProperties,
+    textSize?: string,
+}
 
-const AnimatedButton: FC<{ iconUrl?: string, buttonText: string, textSize?: string, style?: React.CSSProperties, inCanvas?: boolean, onClick: () => void, color?: String, disabled?: boolean }> = ({ color, iconUrl, inCanvas, textSize, buttonText, style, onClick, disabled }) => {
+const AnimatedButton: FC<AnimatedButtonProps> = ({ color, iconUrl, inCanvas, textSize, buttonText, style, onClick, disabled }) => {
 
     const [hovered, setHovered] = useState(false);
     const springProps = useSpring({

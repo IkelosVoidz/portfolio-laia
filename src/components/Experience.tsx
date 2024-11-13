@@ -1,14 +1,13 @@
-import { Environment, useTexture } from '@react-three/drei'
 import { Book } from './Book'
 import { DoubleSide, MeshBasicMaterial, SRGBColorSpace, Vector3 } from 'three'
-import { Suspense, useMemo } from 'react'
+import { Environment, useTexture } from '@react-three/drei'
 import { RoundEdgedBoxFlat, selectedBookAtom, infoPageOpenAtom } from '../utils/utils';
-import { useThree } from '@react-three/fiber'
-import ImageList from './ImageList';
-import { useTranslation } from 'react-i18next'
-
-import Spinner from './Spinner'
+import { Suspense, useMemo } from 'react'
 import { useAtom } from 'jotai'
+import { useThree } from '@react-three/fiber'
+import { useTranslation } from 'react-i18next'
+import ImageList from './ImageList';
+import Spinner from './Spinner'
 
 const baseUrl = import.meta.env.BASE_URL;
 useTexture.preload(`${baseUrl}textures/PORTADA.png`);
@@ -26,7 +25,6 @@ export const Experience = () => {
     picture.colorSpace = SRGBColorSpace;
     const [selectedBook, setSelectedBook] = useAtom(selectedBookAtom);
     const [infoPageOpen, _] = useAtom(infoPageOpenAtom);
-
 
     const bookGeometry = useMemo(() => RoundEdgedBoxFlat(BOOK_WIDTH, BOOK_HEIGHT, BOOK_DEPTH, .1, 10), []);
 
@@ -86,14 +84,10 @@ export const Experience = () => {
                 }
             </Suspense>
 
-
-
             <mesh position-y={0} rotation-x={-Math.PI / 2} receiveShadow>
                 <planeGeometry args={[100, 100]} />
                 <shadowMaterial transparent opacity={0.2} />
             </mesh>
-
-
         </>
     )
 }

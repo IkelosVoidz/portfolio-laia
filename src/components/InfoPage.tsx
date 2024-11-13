@@ -1,16 +1,13 @@
-import { FC } from 'react'
 import { animated, config, useSpring } from '@react-spring/web';
-import AnimatedButton from './AnimatedButton';
+import { FC } from 'react'
 import { useTranslation } from 'react-i18next';
-
+import AnimatedButton from './AnimatedButton';
 
 const baseUrl = import.meta.env.BASE_URL;
 
 const InfoPage: FC<{ isOpen: boolean, onClose: () => void, onCloseAnimEnd: () => void }> = ({ isOpen, onClose, onCloseAnimEnd }) => {
     const { t } = useTranslation();
 
-
-    // Slide-in animation for the popup
     const styles = useSpring({
         from: { transform: 'translateY(100%)' },
         to: { transform: isOpen ? 'translateY(0%)' : 'translateY(100%)' },

@@ -3,7 +3,6 @@ import { BufferGeometry, Float32BufferAttribute, NormalBufferAttributes } from '
 
 export const selectedBookAtom = atom<number | null>(null);
 export const infoPageOpenAtom = atom<boolean>(false);
-
 export function RoundEdgedBoxFlat(
   width: number,
   height: number,

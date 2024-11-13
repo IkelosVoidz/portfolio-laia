@@ -1,26 +1,25 @@
+import { a as aWeb, useSpring } from '@react-spring/web'
+import { a, SpringValue, useSprings } from '@react-spring/three'
+import { Book, BookContent } from '../utils/interfaces'
+import { Camera, SRGBColorSpace, Texture } from 'three'
 import { FC, Suspense, useMemo, useState, useRef } from 'react'
 import { Html, useCursor, useTexture } from '@react-three/drei'
-import { Camera, SRGBColorSpace, Texture } from 'three'
-import AnimatedButton from './AnimatedButton'
 import { useTranslation } from 'react-i18next'
-import { Book, BookContent } from '../utils/interfaces'
-import Spinner from './Spinner'
+import AnimatedButton from './AnimatedButton'
 import Backdrop from './Backdrop'
-import { a, SpringValue, useSprings } from '@react-spring/three'
-import { a as aWeb, useSpring } from '@react-spring/web'
-
+import Spinner from './Spinner'
 
 const baseUrl = import.meta.env.BASE_URL
 const TARGET_HEIGHT = 1.8
 const GAP = 0.6
 
 interface ImagePageProps {
-    selected: boolean
     cameraXRotation: number
+    onClick: () => void
+    selected: boolean
+    texture: Texture
     xPosition: SpringValue<number>
     yPosition?: SpringValue<number>
-    texture: Texture
-    onClick: () => void
 }
 
 const ImagePage: FC<ImagePageProps> = ({ cameraXRotation, xPosition, texture, selected, onClick }) => {
@@ -38,7 +37,6 @@ const ImagePage: FC<ImagePageProps> = ({ cameraXRotation, xPosition, texture, se
         yPosition: (selected && !clicked) ? -0.2 : 0,
         config: { mass: 1, tension: 170, friction: 26 },
     })
-
 
     return (
         <a.mesh
@@ -73,9 +71,9 @@ const ImagePage: FC<ImagePageProps> = ({ cameraXRotation, xPosition, texture, se
 }
 
 interface ImageListProps {
-    selectedBook: number
-    onClose: () => void
     cameraRef: Camera
+    onClose: () => void
+    selectedBook: number
 }
 
 const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => {
@@ -84,8 +82,6 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
     const { t, i18n } = useTranslation()
     const imagePaths = useRef<string[]>([])
 
-
-    // Load image paths on language change
     const bookConfig = useMemo(() => {
 
         const config = t(`books.${selectedBook}`, { returnObjects: true }) as Book
@@ -96,7 +92,6 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
         return config;
     }, [i18n.language, selectedBook])
 
-    // Calculate positions for all images
     const calculatePositions = (textures: Texture[]): number[] => {
         let accPosition = 0
 
@@ -109,14 +104,12 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
         })
     }
 
-    // Load textures only once
     const textures = useTexture(imagePaths.current)
     textures.forEach((texture) => {
         texture.colorSpace = SRGBColorSpace;
     })
     const xPositions = useMemo(() => calculatePositions(textures), [textures, currentIndex])
 
-    // Define springs for animated positions
     const [springs, api] = useSprings(textures.length, (index) => ({
         x: xPositions[index] - xPositions[currentIndex],
         config: { mass: 1, tension: 170, friction: 26 },
@@ -145,7 +138,6 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
             })
         }
     }
-
 
     return (
         <>
@@ -204,7 +196,15 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
     )
 }
 
-const ImagePageControls: FC<{ bookContent: BookContent, nextImage: () => void, prevImage: () => void, onClose: () => void, disableControls: boolean }> = ({ disableControls, bookContent, nextImage, prevImage, onClose }) => {
+interface ImagePageControlsProps {
+    bookContent: BookContent,
+    disableControls: boolean
+    nextImage: () => void,
+    onClose: () => void,
+    prevImage: () => void,
+}
+
+const ImagePageControls: FC<ImagePageControlsProps> = ({ disableControls, bookContent, nextImage, prevImage, onClose }) => {
 
 
     const { opacity } = useSpring({
@@ -257,8 +257,12 @@ const ImagePageControls: FC<{ bookContent: BookContent, nextImage: () => void, p
 
 }
 
+interface ImageInfoProps {
+    bookContent: BookContent,
+    disabledControls: boolean
+}
 
-const ImageInfo: FC<{ bookContent: BookContent, disabledControls: boolean }> = ({ bookContent, disabledControls }) => {
+const ImageInfo: FC<ImageInfoProps> = ({ bookContent, disabledControls }) => {
     // Animation directly in useSpring
     const styles = useSpring({
         from: { opacity: 0 },

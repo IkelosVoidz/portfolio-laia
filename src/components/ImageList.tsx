@@ -1,5 +1,5 @@
 import { FC, Suspense, useMemo, useState, useRef } from 'react'
-import { Html, useTexture } from '@react-three/drei'
+import { Html, useCursor, useTexture } from '@react-three/drei'
 import { Camera, Texture } from 'three'
 import AnimatedButton from './AnimatedButton'
 import { useTranslation } from 'react-i18next'
@@ -15,20 +15,57 @@ const TARGET_HEIGHT = 1.8
 const GAP = 0.6
 
 interface ImagePageProps {
-    index: number
+    selected: boolean
     cameraXRotation: number
     xPosition: SpringValue<number>
-    yPosition: SpringValue<number>
+    yPosition?: SpringValue<number>
     texture: Texture
+    onClick: () => void
 }
 
-const ImagePage: FC<ImagePageProps> = ({ cameraXRotation, xPosition, yPosition, texture }) => {
+const ImagePage: FC<ImagePageProps> = ({ cameraXRotation, xPosition, texture, selected, onClick }) => {
+
+    const [hovered, setHovered] = useState(false);
+    const [clicked, setClicked] = useState(false);
+    useCursor(hovered);
+
     const { width, height } = texture.image
     const aspectRatio = width / height
     const targetWidth = TARGET_HEIGHT * aspectRatio
 
+    const { scale, yPosition } = useSpring({
+        scale: clicked ? 1.5 : 1,
+        yPosition: (selected && !clicked) ? -0.2 : 0,
+        config: { mass: 1, tension: 170, friction: 26 },
+    })
+
+
     return (
-        <a.mesh position-x={xPosition} position-y={0.6} position-z={yPosition} rotation={[cameraXRotation, 0, 0]}>
+        <a.mesh
+            castShadow={true}
+            scale={scale}
+            onPointerEnter={(e) => {
+                if (!selected) return
+                e.stopPropagation();
+                setHovered(true);
+            }}
+            onPointerLeave={(e) => {
+                if (!selected) return
+                e.stopPropagation();
+                setHovered(false);
+            }}
+            onClick={(e) => {
+                if (!selected) return
+                e.stopPropagation();
+                setClicked(!clicked);
+                onClick();
+            }}
+
+            position-x={xPosition}
+            position-y={0.6}
+            position-z={yPosition}
+            rotation={[cameraXRotation, 0, 0]}
+        >
             <boxGeometry args={[targetWidth, TARGET_HEIGHT, 0.01]} />
             <meshBasicMaterial map={texture} />
         </a.mesh>
@@ -43,8 +80,10 @@ interface ImageListProps {
 
 const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => {
     const [currentIndex, setCurrentIndex] = useState<number>(0)
+    const [selectedImage, setSelectedImage] = useState<boolean>(false)
     const { t, i18n } = useTranslation()
     const imagePaths = useRef<string[]>([])
+
 
     // Load image paths on language change
     const bookConfig = useMemo(() => {
@@ -74,7 +113,6 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
     // Define springs for animated positions
     const [springs, api] = useSprings(textures.length, (index) => ({
         x: xPositions[index] - xPositions[currentIndex],
-        y: index === currentIndex ? -0.2 : 0,
         config: { mass: 1, tension: 170, friction: 26 },
     }))
 
@@ -84,7 +122,6 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
                 const newIndex = prev - 1
                 api.start((index) => ({
                     x: xPositions[index] - xPositions[newIndex],
-                    y: (index + 1) === currentIndex ? -0.2 : 0,
                 }))
                 return newIndex
             })
@@ -97,7 +134,6 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
                 const newIndex = prev + 1
                 api.start((index) => ({
                     x: xPositions[index] - xPositions[newIndex],
-                    y: (index - 1) === currentIndex ? -0.2 : 0,
                 }))
                 return newIndex
             })
@@ -113,10 +149,10 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
                     <ImagePage
                         key={index}
                         cameraXRotation={cameraRef.rotation.x}
-                        index={index}
+                        selected={index === currentIndex}
                         xPosition={springs[index].x}
-                        yPosition={springs[index].y}
                         texture={tex}
+                        onClick={() => setSelectedImage(!selectedImage)}
                     />
                 ))}
             </Suspense>
@@ -126,37 +162,46 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
                 nextImage={nextImage}
                 prevImage={prevImage}
                 onClose={onClose}
+                disableControls={selectedImage}
             />
         </>
     )
 }
 
-const ImagePageControls: FC<{ bookContent: BookContent, nextImage: () => void, prevImage: () => void, onClose: () => void }> = ({ bookContent, nextImage, prevImage, onClose }) => {
+const ImagePageControls: FC<{ bookContent: BookContent, nextImage: () => void, prevImage: () => void, onClose: () => void, disableControls: boolean }> = ({ disableControls, bookContent, nextImage, prevImage, onClose }) => {
+
+
+    const { opacity } = useSpring({
+        opacity: disableControls ? 0 : 1,
+        config: { mass: 1, tension: 170, friction: 26 },
+    });
 
     const { t } = useTranslation();
     return (
         <Html fullscreen zIndexRange={[0, 10000]} style={{ pointerEvents: 'none' }} >
-            <div className="container-fluid h-100">
+            <aWeb.div className="container-fluid h-100" style={{ opacity: opacity }}>
                 <div className="row g-0 h-100 align-items-end">
                     <div className="col-12 mb-3">
                         <div className='row align-items-end justify-content-center'>
                             <div className="col align-self-center">
                                 <AnimatedButton
-                                    style={{ pointerEvents: 'auto', marginLeft: 'auto' }}
+                                    style={{ pointerEvents: disableControls ? 'none' : 'auto', marginLeft: 'auto' }}
                                     iconUrl={`${baseUrl}icons/left.svg`}
                                     buttonText=''
                                     onClick={() => prevImage()}
+                                    disabled={disableControls}
                                 />
                             </div>
                             <div className="col-6 align-self-end">
-                                <ImageInfo bookContent={bookContent} />
+                                <ImageInfo bookContent={bookContent} disabledControls={disableControls} />
                             </div>
                             <div className="col align-self-center">
                                 <AnimatedButton
-                                    style={{ pointerEvents: 'auto', marginRight: 'auto' }}
+                                    style={{ pointerEvents: disableControls ? 'none' : 'auto', marginRight: 'auto' }}
                                     iconUrl={`${baseUrl}icons/right.svg`}
                                     buttonText=''
                                     onClick={() => nextImage()}
+                                    disabled={disableControls}
                                 />
                             </div>
                         </div>
@@ -170,24 +215,24 @@ const ImagePageControls: FC<{ bookContent: BookContent, nextImage: () => void, p
                         />
                     </div>
                 </div>
-            </div>
+            </aWeb.div>
         </Html>
     )
 
 }
 
 
-const ImageInfo: FC<{ bookContent: BookContent }> = ({ bookContent }) => {
+const ImageInfo: FC<{ bookContent: BookContent, disabledControls: boolean }> = ({ bookContent, disabledControls }) => {
     // Animation directly in useSpring
     const styles = useSpring({
         from: { opacity: 0 },
         to: { opacity: 1 },
-        reset: true, // Ensures it replays each time bookContent changes
         config: { tension: 120, friction: 14 },
+        reset: true
     })
 
     return (
-        <aWeb.div style={styles} className='text-center fitxa-tecnica text-nowrap'>
+        <aWeb.div style={disabledControls ? {} : styles} className='text-center fitxa-tecnica text-nowrap'>
             <h5>{bookContent.title}</h5>
             <h5>{bookContent.date}</h5>
             <h5>{bookContent.technique}</h5>

@@ -24,9 +24,8 @@ const baseUrl = import.meta.env.BASE_URL
 
 export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraRef, onSelected, selected, title, disableControls, ...props }) => {
 
-    const [hovered, setHovered] = useState(false);
     const textRef = useRef<any>(); // Ref for the text object
-
+    const [hovered, setHovered] = useState(false);
     useCursor(hovered);
 
     const { position: animatedPosition, scale: animatedScale, rotation: animatedRotation } = useSpring({

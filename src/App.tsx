@@ -1,13 +1,10 @@
+import { ACESFilmicToneMapping } from "three";
 import { Canvas } from "@react-three/fiber"
-import { Suspense } from "react"
-import { OrbitControls } from '@react-three/drei';
 import { Experience } from './components/Experience';
-import Spinner from "./components/Spinner";
+import { OrbitControls } from '@react-three/drei';
+import { Suspense } from "react"
+import Spinner from "./components/shared/Spinner";
 import UI from "./components/UI";
-import {
-    ACESFilmicToneMapping,
-} from "three";
-
 
 function App() {
     return (

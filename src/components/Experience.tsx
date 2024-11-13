@@ -6,8 +6,8 @@ import { Suspense, useMemo } from 'react'
 import { useAtom } from 'jotai'
 import { useThree } from '@react-three/fiber'
 import { useTranslation } from 'react-i18next'
-import ImageList from './ImageList';
-import Spinner from './Spinner'
+import ImageList from './image-list/ImageList';
+import Spinner from './shared/Spinner'
 
 const baseUrl = import.meta.env.BASE_URL;
 useTexture.preload(`${baseUrl}textures/PORTADA.png`);

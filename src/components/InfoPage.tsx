@@ -1,7 +1,7 @@
 import { animated, config, useSpring } from '@react-spring/web';
 import { FC } from 'react'
 import { useTranslation } from 'react-i18next';
-import AnimatedButton from './AnimatedButton';
+import AnimatedButton from './shared/AnimatedButton';
 
 const baseUrl = import.meta.env.BASE_URL;
 

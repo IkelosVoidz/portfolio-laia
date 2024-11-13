@@ -2,7 +2,7 @@ import { infoPageOpenAtom, selectedBookAtom } from "../utils/utils";
 import { useAtom } from "jotai";
 import { useState } from "react";
 import { useTranslation } from "react-i18next";
-import AnimatedButton from "./AnimatedButton";
+import AnimatedButton from "./shared/AnimatedButton";
 import InfoPage from "./InfoPage";
 
 const languages = [

@@ -15,7 +15,10 @@ i18n
     },
     load: 'languageOnly',
     fallbackLng: 'en',
-    debug: true,
+    detection: {
+      order: ['navigator', 'localStorage', 'cookie'],
+      caches: ['localStorage', 'cookie']
+    },
     react: {
       useSuspense: false
     },

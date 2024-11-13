@@ -4,7 +4,9 @@ import { OrbitControls } from '@react-three/drei';
 import { Experience } from './components/Experience';
 import Spinner from "./components/Spinner";
 import UI from "./components/UI";
-
+import {
+    ACESFilmicToneMapping,
+} from "three";
 
 
 function App() {
@@ -21,7 +23,7 @@ function App() {
             }}>
                 <UI />
             </div>
-            <Canvas shadows camera={{ position: [0, 2.5, .2], fov: 80 }}>
+            <Canvas shadows camera={{ position: [0, 2.5, .2], fov: 80 }} gl={{ toneMapping: ACESFilmicToneMapping, toneMappingExposure: 1.6 }}  >
                 {import.meta.env.MODE === "development" && (
                     <>
                         <OrbitControls enableDamping={false} />

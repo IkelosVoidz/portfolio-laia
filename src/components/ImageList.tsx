@@ -1,6 +1,6 @@
 import { FC, Suspense, useMemo, useState, useRef } from 'react'
 import { Html, useCursor, useTexture } from '@react-three/drei'
-import { Camera, Texture } from 'three'
+import { Camera, SRGBColorSpace, Texture } from 'three'
 import AnimatedButton from './AnimatedButton'
 import { useTranslation } from 'react-i18next'
 import { Book, BookContent } from '../utils/interfaces'
@@ -108,6 +108,9 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
 
     // Load textures only once
     const textures = useTexture(imagePaths.current)
+    textures.forEach((texture) => {
+        texture.colorSpace = SRGBColorSpace;
+    })
     const xPositions = useMemo(() => calculatePositions(textures), [textures, currentIndex])
 
     // Define springs for animated positions

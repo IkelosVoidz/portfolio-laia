@@ -6,8 +6,7 @@ import { useTranslation } from 'react-i18next';
 
 const baseUrl = import.meta.env.BASE_URL;
 
-const InfoPage: FC<{ isOpen: boolean, onClose: () => void }> = ({ isOpen, onClose }) => {
-
+const InfoPage: FC<{ isOpen: boolean, onClose: () => void, onCloseAnimEnd: () => void }> = ({ isOpen, onClose, onCloseAnimEnd }) => {
     const { t } = useTranslation();
 
 
@@ -17,7 +16,7 @@ const InfoPage: FC<{ isOpen: boolean, onClose: () => void }> = ({ isOpen, onClos
         to: { transform: isOpen ? 'translateY(0%)' : 'translateY(100%)' },
         config: config.stiff,
         onRest: () => {
-            if (!isOpen) onClose()
+            if (!isOpen) onCloseAnimEnd()
         }
     })
 

@@ -22,6 +22,8 @@ const UI = () => {
     const currentLanguage = i18n.language
     const [selectedBook, _] = useAtom(selectedBookAtom);
     const [infoPageOpen, setInfoPageOpen] = useState(false);
+    const [infoPageAnimating, setInfoPageAnimating] = useState(false);
+
 
     return (
         <>
@@ -56,9 +58,15 @@ const UI = () => {
                     </div>
                 </div>
             </div>
-            {infoPageOpen &&
+            {(infoPageOpen || infoPageAnimating) &&
                 <div className="position-absolute top-0 start-0 w-100" style={{ height: 'calc(100% + 50px)' }}>
-                    <InfoPage isOpen={infoPageOpen} onClose={() => setInfoPageOpen(false)} />
+                    <InfoPage
+                        isOpen={infoPageOpen}
+                        onClose={() => {
+                            setInfoPageAnimating(true);
+                            setInfoPageOpen(false);
+                        }}
+                        onCloseAnimEnd={() => setInfoPageAnimating(false)} />
                 </div>
             }
         </>

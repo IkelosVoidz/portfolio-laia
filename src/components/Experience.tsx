@@ -2,7 +2,7 @@ import { Environment, useTexture } from '@react-three/drei'
 import { Book } from './Book'
 import { DoubleSide, MeshBasicMaterial, SRGBColorSpace, Vector3 } from 'three'
 import { Suspense, useMemo } from 'react'
-import { RoundEdgedBoxFlat, selectedBookAtom } from '../utils/utils'
+import { RoundEdgedBoxFlat, selectedBookAtom, infoPageOpenAtom } from '../utils/utils';
 import { useThree } from '@react-three/fiber'
 import ImageList from './ImageList';
 import { useTranslation } from 'react-i18next'
@@ -25,6 +25,9 @@ export const Experience = () => {
     const [picture] = useTexture([`${baseUrl}textures/PORTADA.png`])
     picture.colorSpace = SRGBColorSpace;
     const [selectedBook, setSelectedBook] = useAtom(selectedBookAtom);
+    const [infoPageOpen, _] = useAtom(infoPageOpenAtom);
+
+
     const bookGeometry = useMemo(() => RoundEdgedBoxFlat(BOOK_WIDTH, BOOK_HEIGHT, BOOK_DEPTH, .1, 10), []);
 
     const materials = useMemo(() => [
@@ -69,6 +72,7 @@ export const Experience = () => {
                         cameraRef={camera}
                         onSelected={() => setSelectedBook(i)}
                         selected={selectedBook !== null}
+                        disableControls={infoPageOpen}
                     />
                 ))
 

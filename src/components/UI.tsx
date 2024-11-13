@@ -1,7 +1,7 @@
 import { useTranslation } from "react-i18next";
 import AnimatedButton from "./AnimatedButton";
 import { useAtom } from "jotai";
-import { selectedBookAtom } from "../utils/utils";
+import { infoPageOpenAtom, selectedBookAtom } from "../utils/utils";
 import InfoPage from "./InfoPage";
 import { useState } from "react";
 
@@ -21,7 +21,7 @@ const UI = () => {
     const { i18n } = useTranslation();
     const currentLanguage = i18n.language
     const [selectedBook, _] = useAtom(selectedBookAtom);
-    const [infoPageOpen, setInfoPageOpen] = useState(false);
+    const [infoPageOpen, setInfoPageOpen] = useAtom(infoPageOpenAtom);
     const [infoPageAnimating, setInfoPageAnimating] = useState(false);
 
 

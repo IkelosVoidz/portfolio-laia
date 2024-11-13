@@ -2,6 +2,7 @@ import { atom } from 'jotai';
 import { BufferGeometry, Float32BufferAttribute, NormalBufferAttributes } from 'three';
 
 export const selectedBookAtom = atom<number | null>(null);
+export const infoPageOpenAtom = atom<boolean>(false);
 
 export function RoundEdgedBoxFlat(
   width: number,

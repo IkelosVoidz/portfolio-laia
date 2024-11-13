@@ -17,11 +17,12 @@ interface BookProps {
     cameraRef: Camera,
     onSelected: () => void,
     selected: boolean,
+    disableControls: boolean
 }
 
 const baseUrl = import.meta.env.BASE_URL
 
-export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraRef, onSelected, selected, title, ...props }) => {
+export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraRef, onSelected, selected, title, disableControls, ...props }) => {
 
     const [hovered, setHovered] = useState(false);
     const textRef = useRef<any>(); // Ref for the text object
@@ -49,14 +50,23 @@ export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraR
 
                 {...props}
                 onPointerEnter={(e) => {
+
+                    if (disableControls) return;
+
                     e.stopPropagation();
                     setHovered(true);
                 }}
                 onPointerLeave={(e) => {
+
+                    if (disableControls) return;
+
+
                     e.stopPropagation();
                     setHovered(false);
                 }}
                 onClick={(e) => {
+                    if (disableControls) return;
+
                     e.stopPropagation();
                     setHovered(false);
                     onSelected();

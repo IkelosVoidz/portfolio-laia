@@ -35,7 +35,7 @@ const InfoPage: FC<{ isOpen: boolean, onClose: () => void, onCloseAnimEnd: () =>
             />
             <div className="container">
                 <div className="row h-100 w-100">
-                    <h1 className="mb-4 fw-bold">My Portfolio</h1>
+                    <h1 className="mb-4 fw-bold">{t('myPortfolio')}</h1>
                     <p style={{ textAlign: 'justify', fontWeight: 'bold' }}>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae explicabo,
                         voluptatem ut ab laborum veritatis accusantium quidem impedit excepturi possimus.

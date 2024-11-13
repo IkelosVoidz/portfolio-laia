@@ -1,6 +1,6 @@
 import { Canvas } from "@react-three/fiber"
 import { Suspense } from "react"
-import { Stats, OrbitControls } from '@react-three/drei';
+import { OrbitControls } from '@react-three/drei';
 import { Experience } from './components/Experience';
 import Spinner from "./components/Spinner";
 import UI from "./components/UI";

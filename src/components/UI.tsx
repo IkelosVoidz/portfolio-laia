@@ -34,8 +34,8 @@ const UI = () => {
                         <div className="align-self-end"> {selectedBook === null &&
                             <AnimatedButton
                                 iconUrl={`${baseUrl}icons/STAR.svg`}
-                                buttonText={'INFO'}
-                                style={{ pointerEvents: 'auto' }}
+                                buttonText={'STATEMENT'}
+                                style={{ pointerEvents: 'auto', margin: '10px' }}
                                 onClick={() => setInfoPageOpen(true)}
                             />}
                         </div>
@@ -59,15 +59,15 @@ const UI = () => {
                 </div>
             </div>
             {(infoPageOpen || infoPageAnimating) &&
-                <div className="position-absolute top-0 start-0 w-100" style={{ height: 'calc(100% + 50px)' }}>
-                    <InfoPage
-                        isOpen={infoPageOpen}
-                        onClose={() => {
-                            setInfoPageAnimating(true);
-                            setInfoPageOpen(false);
-                        }}
-                        onCloseAnimEnd={() => setInfoPageAnimating(false)} />
-                </div>
+
+                <InfoPage
+                    isOpen={infoPageOpen}
+                    onClose={() => {
+                        setInfoPageAnimating(true);
+                        setInfoPageOpen(false);
+                    }}
+                    onCloseAnimEnd={() => setInfoPageAnimating(false)} />
+
             }
         </>
     )

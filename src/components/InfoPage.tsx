@@ -21,38 +21,36 @@ const InfoPage: FC<{ isOpen: boolean, onClose: () => void, onCloseAnimEnd: () =>
     })
 
     return (
-        <animated.div style={{ ...styles, width: '100%', height: '100%', backgroundColor: '#fbbcad', color: '#292830', zIndex: 10000000 }}>
+        <animated.div style={{
+            ...styles,
+            backgroundColor: '#fbbcad',
+            color: '#292830',
+            zIndex: 10000000,
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: 'calc(100% + 50px)'
+        }}>
 
             <AnimatedButton
                 iconUrl={`${baseUrl}icons/darkStar.svg`}
                 buttonText={''}
-                style={{ pointerEvents: 'auto', padding: 10 }}
+                style={{ pointerEvents: 'auto', marginTop: 30, marginLeft: 30 }}
                 onClick={onClose}
                 color={'#292830'}
             />
             <div className="container">
-                <div className="row h-100 w-100">
-                    <h1 className="mb-4 fw-bold">{t('myPortfolio')}</h1>
-                    <p style={{ textAlign: 'justify', fontWeight: 'bold' }}>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae explicabo,
-                        voluptatem ut ab laborum veritatis accusantium quidem impedit excepturi possimus.
-                        Illum unde expedita soluta id commodi corporis a neque ipsa! Maxime sunt molestiae dolores fuga,
-                        consequuntur voluptatibus facere debitis aliquid magni! Perferendis, illum vitae, magni nihil
-                        accusantium deserunt eveniet cumque dolorem sequi iusto repellendus ad? Ullam ipsum unde r
-                        eiciendis consequuntur animi odit aut maxime adipisci recusandae laudantium officiis rerum s
-                        ed repellat dolore quae, debitis itaque molestias suscipit non! Facere dolor, sunt corrupti
-                        accusantium architecto voluptas deleniti ut iste numquam labore quidem necessitatibus illo voluptatum maxime soluta fuga, illum, vel saepe?
-                    </p>
-                    <p style={{ textAlign: 'justify', fontWeight: 'bold' }}>
-                        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Quae explicabo,
-                        voluptatem ut ab laborum veritatis accusantium quidem impedit excepturi possimus.
-                        Illum unde expedita soluta id commodi corporis a neque ipsa! Maxime sunt molestiae dolores fuga,
-                        consequuntur voluptatibus facere debitis aliquid magni! Perferendis, illum vitae, magni nihil
-                        accusantium deserunt eveniet cumque dolorem sequi iusto repellendus ad? Ullam ipsum unde r
-                        eiciendis consequuntur animi odit aut maxime adipisci recusandae laudantium officiis rerum s
-                        ed repellat dolore quae, debitis itaque molestias suscipit non! Facere dolor, sunt corrupti
-                        accusantium architecto voluptas deleniti ut iste numquam labore quidem necessitatibus illo voluptatum maxime soluta fuga, illum, vel saepe?
-                    </p>
+                <div className="row h-100 w-100 justify-content-center">
+                    <div className='col-10'>
+                        <h1 className="mb-4 fw-bold">Statement</h1>
+                        <p style={{ fontSize: '1.5rem', textAlign: 'justify', fontWeight: 'bold' }}>
+                            {t("text1")}
+                        </p>
+                        <p style={{ fontSize: '1.5rem', textAlign: 'justify', fontWeight: 'bold' }}>
+                            {t("text2")}
+                        </p>
+                    </div >
                 </div>
             </div>
 

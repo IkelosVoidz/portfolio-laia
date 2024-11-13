@@ -87,8 +87,11 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
 
     // Load image paths on language change
     const bookConfig = useMemo(() => {
+
         const config = t(`books.${selectedBook}`, { returnObjects: true }) as Book
-        const imgPaths = config.content.map((image) => `${baseUrl}images/${image.imagePath}.jpg`)
+        const imgPaths = config.content
+            .map((image) => image.imagePath ? `${baseUrl}images/${image.imagePath}.jpg` : null)
+            .filter((path) => path !== null) as string[];
         imagePaths.current = imgPaths
         return config;
     }, [i18n.language, selectedBook])
@@ -148,17 +151,47 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
         <>
             <Backdrop />
             <Suspense fallback={<Spinner />}>
-                {textures.map((tex, index) => (
-                    <ImagePage
-                        key={index}
-                        cameraXRotation={cameraRef.rotation.x}
-                        selected={index === currentIndex}
-                        xPosition={springs[index].x}
-                        texture={tex}
-                        onClick={() => setSelectedImage(!selectedImage)}
-                    />
-                ))}
-            </Suspense>
+
+                {textures.length === 0 ? (
+                    <Html
+                        fullscreen
+                        style={{
+                            margin: 'auto',
+                            pointerEvents: 'none',
+                            textAlign: 'center',
+                            fontSize: '2rem',
+                            display: 'flex',
+                            justifyContent: 'center',
+                            alignItems: 'center',
+                            height: '100vh',
+                        }}
+                    >
+                        <p>
+                            <strong>SORRY</strong>
+                            <br />
+                            No artworks in this category are available
+                            <strong> YET</strong>
+                            <br />
+                            <p>Come back at another time</p>
+                        </p>
+
+
+
+                    </Html>
+                ) : (
+                    textures.map((tex, index) => (
+                        <ImagePage
+                            key={index}
+                            cameraXRotation={cameraRef.rotation.x}
+                            selected={index === currentIndex}
+                            xPosition={springs[index].x}
+                            texture={tex}
+                            onClick={() => setSelectedImage(!selectedImage)}
+                        />
+                    ))
+                )}
+
+            </Suspense >
 
             <ImagePageControls
                 bookContent={bookConfig.content[currentIndex]}

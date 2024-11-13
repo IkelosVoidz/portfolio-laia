@@ -1,6 +1,7 @@
 {
     "close" : "Fechar",
-    "myPortfolio" : "Meu portfolio",
+    "text1" : "A arte permite-me entender as pessoas e o mundo que me rodeia. Sempre tive dificuldade em comunicar as minhas ideias; a arte ajuda-me a expressá-las de forma universal.",
+    "text2" : "Trabalho a partir da memória, do imaginário coletivo e minho arquivo familiar, e procuro oferecer um refúgio e conectar-me com a narrativa pessoal do espectador. Através desta metodologia, tento provocar sentimentos de nostalgia e vazio, mas também de calor e ternura.",
     "books" : [
         {
             "title" : "Collagem",

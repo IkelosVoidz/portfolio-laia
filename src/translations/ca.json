@@ -1,6 +1,7 @@
 {
     "close" : "Tancar",
-    "myPortfolio" : "El meu portfoli",
+    "text1" : "L'art em permet entendre a la gent i el món que m'envolta. Sempre m'ha costat comunicar les meves idees, l'art m'ajuda a expressar-les de manera universal. ",
+    "text2" : "Treballo desde la memòria, l'imaginari col·lectiu i l'arxiu familiar busco proveir un refugi i connectar amb la narrativa personal de l'espectador. A partir d'aquesta metodologia intento provocar sentiments de nostàlgia i buidor, però també calidesa i tendresa.",
     "books" : [
         {
             "title" : "Collage",

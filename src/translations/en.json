@@ -1,6 +1,7 @@
 {
     "close" : "Close",
-    "myPortfolio" : "My portfolio",
+    "text1" : "Art allows me to understand people and the world around me. I've always struggled to communicate my ideas; art helps me express them in a universal way.",
+    "text2" : "I work from memory, common imagery, and my family archive, seeking to provide a refuge and connect with the viewer’s personal narrative. Through this methodology, I try to evoke feelings of nostalgia and emptiness, but also warmth and tenderness.",
     "books" : [
         {
             "title" : "Collage",

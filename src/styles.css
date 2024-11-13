@@ -9,12 +9,12 @@ body {
 
 @font-face {
   font-family: 'TheSeasons';
-  src: url('/fonts/Fontspring-DEMO-theseasons-reg.ttf') format('truetype'); /* Development */
+  src: url('/fonts/Belleza-Regular.ttf') format('truetype'); /* Development */
 }
 
 @font-face {
   font-family: 'TheSeasons';
-  src: url('/portfolio-laia/fonts/Fontspring-DEMO-theseasons-reg.ttf') format('truetype');  /* Production */
+  src: url('/portfolio-laia/fonts/Belleza-Regular.ttf') format('truetype');  /* Production */
 }
 
 body {
@@ -38,8 +38,4 @@ body {
 
 .btn  {
   color : #fbbcad
-}
-
-.fitxa-tecnica {
-  font-family: 'Roboto', sans-serif;
 }

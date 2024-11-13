@@ -20,7 +20,7 @@ function App() {
             }}>
                 <UI />
             </div>
-            <Canvas shadows camera={{ position: [0, 2.5, .2], fov: 80 }} gl={{ toneMapping: ACESFilmicToneMapping, toneMappingExposure: 1.6 }}  >
+            <Canvas shadows camera={{ position: [0, 2.5, .2], fov: 80 }} >
                 {import.meta.env.MODE === "development" && (
                     <>
                         <OrbitControls enableDamping={false} />
@@ -31,10 +31,11 @@ function App() {
                 <Suspense fallback={<Spinner />}>
                     <Experience />
                 </Suspense>
-            </Canvas>
+            </Canvas >
         </>)
 }
 
 export default App
 
 
+// gl = {{ toneMapping: ACESFilmicToneMapping, toneMappingExposure: 1.6 }}

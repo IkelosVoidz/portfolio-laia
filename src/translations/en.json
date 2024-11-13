@@ -140,17 +140,50 @@
             ]
         },
         {
-            "title" : "Paintings",
-            "content" : [
-                { 
-                    "imagePath" : "",
-                    "title" : "",
-                    "date" : "",
-                    "technique" : "",
-                    "size" : "20 x 14cm"
+            "title": "Paintings",
+            "content": [
+                {
+                    "imagePath": "pintura/0",
+                    "title": "I grew so much that I had to move out",
+                    "date": "2024",
+                    "technique": "Acrylic on canvas",
+                    "size": "200 x 200 cm"
+                },
+                {
+                    "imagePath": "pintura/1",
+                    "title": "Grandma’s house I",
+                    "date": "2024",
+                    "technique": "Acrylic on paper",
+                    "size": "50 x 70 cm"
+                },
+                {
+                    "imagePath": "pintura/2",
+                    "title": "Grandma’s house II",
+                    "date": "2024",
+                    "technique": "Acrylic on paper",
+                    "size": "50 x 70 cm"
+                },
+                {
+                    "imagePath": "pintura/3",
+                    "title": "Portrait",
+                    "date": "2022",
+                    "technique": "Soft pastels on kraft paper",
+                    "size": "50 x 70 cm"
+                },
+                {
+                    "imagePath": "pintura/4",
+                    "title": "Self portrait",
+                    "date": "2022",
+                    "technique": "Soft pastels on kraft paper",
+                    "size": "70 x 50 cm"
+                },
+                {
+                    "imagePath": "pintura/5",
+                    "title": "Hermitage of the Virgin of Alfindén",
+                    "date": "2021",
+                    "technique": "Oil on paper",
+                    "size": "25 x 32 cm"
                 }
-               
-               
             ]
         },
        {

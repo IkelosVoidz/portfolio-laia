@@ -43,8 +43,8 @@ const InfoPage: FC<{ isOpen: boolean, onClose: () => void, onCloseAnimEnd: () =>
                         <h1 className="mb-4 fw-bold">Statement</h1>
                         <p style={{ fontSize: '2rem', textAlign: 'justify', fontWeight: 'bold' }}>
                             {t("text1")}
-                        </p>
-                        <p style={{ fontSize: '2rem', textAlign: 'justify', fontWeight: 'bold' }}>
+                            <br />
+                            <br />
                             {t("text2")}
                         </p>
                     </div >

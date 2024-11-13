@@ -140,17 +140,50 @@
             ]
         },
         {
-            "title" : "Pinturas",
-            "content" : [
-                { 
-                    "imagePath" : "",
-                    "title" : "",
-                    "date" : "",
-                    "technique" : "",
-                    "size" : "20 x 14cm"
+            "title": "Pinturas",
+            "content": [
+                {
+                    "imagePath": "pintura/0",
+                    "title": "Eu cresci tanto que tive que me mudar",
+                    "date": "2024",
+                    "technique": "Tinta acrílica sobre tela",
+                    "size": "200 x 200 cm"
+                },
+                {
+                    "imagePath": "pintura/1",
+                    "title": "Casa da vovó I",
+                    "date": "2024",
+                    "technique": "Tinta acrílica sobre papel",
+                    "size": "50 x 70 cm"
+                },
+                {
+                    "imagePath": "pintura/2",
+                    "title": "Casa da vovó II",
+                    "date": "2024",
+                    "technique": "Tinta acrílica sobre papel",
+                    "size": "50 x 70 cm"
+                },
+                {
+                    "imagePath": "pintura/3",
+                    "title": "Retrato",
+                    "date": "2022",
+                    "technique": "Pastéis suaves em papel kraft",
+                    "size": "50 x 70 cm"
+                },
+                {
+                    "imagePath": "pintura/4",
+                    "title": "Autoretrato",
+                    "date": "2022",
+                    "technique": "Pastéis suaves em papel kraft",
+                    "size": "70 x 50 cm"
+                },
+                {
+                    "imagePath": "pintura/5",
+                    "title": "Ermida da Virgem de Alfindén",
+                    "date": "2021",
+                    "technique": "Óleo sobre papel",
+                    "size": "25 x 32 cm"
                 }
-               
-               
             ]
         },
         {

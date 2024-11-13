@@ -11,30 +11,25 @@ const AnimatedButton: FC<{ iconUrl?: string, buttonText: string, textSize?: stri
     });
 
     const btnContent = (
+        <animated.button
+            className="btn d-flex flex-row justify-content-between align-items-center"
+            onMouseEnter={() => setHovered(true)}
+            onMouseLeave={() => setHovered(false)}
+            onClick={onClick}
+            style={{ ...style, ...springProps as any, color: color ? color : '' }}
+        >
+            {iconUrl && (
+                <img
+                    src={iconUrl}
+                    alt={buttonText || 'icon'}
+                    width="50px"
+                    height="50px"
+                    className={(buttonText === "") ? "" : "me-2"}
+                />
+            )}
+            <p className='my-auto' style={{ fontSize: textSize || '2rem' }}>{buttonText}</p>
 
-        <div style={{ ...style }}>
-            <animated.button
-                className="btn d-flex flex-row justify-content-between align-items-center"
-                onMouseEnter={() => setHovered(true)}
-                onMouseLeave={() => setHovered(false)}
-                onClick={onClick}
-                style={{ ...springProps as any, color: color ? color : '' }}
-
-
-            >
-                {iconUrl && (
-                    <img
-                        src={iconUrl}
-                        alt={buttonText || 'icon'}
-                        width="50px"
-                        height="50px"
-                        className="me-2"
-                    />
-                )}
-                <p className='my-auto' style={{ fontSize: textSize || '2rem' }}>{buttonText}</p>
-
-            </animated.button>
-        </div >
+        </animated.button>
     )
 
     return (

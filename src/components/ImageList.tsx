@@ -18,16 +18,17 @@ interface ImagePageProps {
     index: number
     cameraXRotation: number
     xPosition: SpringValue<number>
+    yPosition: SpringValue<number>
     texture: Texture
 }
 
-const ImagePage: FC<ImagePageProps> = ({ cameraXRotation, xPosition, texture }) => {
+const ImagePage: FC<ImagePageProps> = ({ cameraXRotation, xPosition, yPosition, texture }) => {
     const { width, height } = texture.image
     const aspectRatio = width / height
     const targetWidth = TARGET_HEIGHT * aspectRatio
 
     return (
-        <a.mesh position-x={xPosition} position-y={0.6} position-z={0} rotation={[cameraXRotation, 0, 0]}>
+        <a.mesh position-x={xPosition} position-y={0.6} position-z={yPosition} rotation={[cameraXRotation, 0, 0]}>
             <boxGeometry args={[targetWidth, TARGET_HEIGHT, 0.01]} />
             <meshBasicMaterial map={texture} />
         </a.mesh>
@@ -73,6 +74,7 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
     // Define springs for animated positions
     const [springs, api] = useSprings(textures.length, (index) => ({
         x: xPositions[index] - xPositions[currentIndex],
+        y: index === currentIndex ? -0.2 : 0,
         config: { mass: 1, tension: 170, friction: 26 },
     }))
 
@@ -81,7 +83,8 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
             setCurrentIndex((prev) => {
                 const newIndex = prev - 1
                 api.start((index) => ({
-                    x: xPositions[index] - xPositions[newIndex]
+                    x: xPositions[index] - xPositions[newIndex],
+                    y: (index + 1) === currentIndex ? -0.2 : 0,
                 }))
                 return newIndex
             })
@@ -93,7 +96,8 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
             setCurrentIndex((prev) => {
                 const newIndex = prev + 1
                 api.start((index) => ({
-                    x: xPositions[index] - xPositions[newIndex]
+                    x: xPositions[index] - xPositions[newIndex],
+                    y: (index - 1) === currentIndex ? -0.2 : 0,
                 }))
                 return newIndex
             })
@@ -111,41 +115,65 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
                         cameraXRotation={cameraRef.rotation.x}
                         index={index}
                         xPosition={springs[index].x}
+                        yPosition={springs[index].y}
                         texture={tex}
                     />
                 ))}
             </Suspense>
 
-            <Html fullscreen zIndexRange={[0, 10000]}>
-                <div style={{ position: 'absolute', bottom: 20, left: '50%', transform: 'translateX(-50%)', zIndex: 998 }}>
-                    <div className='d-flex flex-row justify-content-between align-items-center'>
-                        <AnimatedButton
-                            style={{ marginRight: 200 }}
-                            iconUrl={`${baseUrl}icons/left.svg`}
-                            buttonText=''
-                            onClick={() => prevImage()}
-                        />
+            <ImagePageControls
+                bookContent={bookConfig.content[currentIndex]}
+                nextImage={nextImage}
+                prevImage={prevImage}
+                onClose={onClose}
+            />
+        </>
+    )
+}
 
-                        <ImageInfo bookContent={bookConfig.content[currentIndex]} />
+const ImagePageControls: FC<{ bookContent: BookContent, nextImage: () => void, prevImage: () => void, onClose: () => void }> = ({ bookContent, nextImage, prevImage, onClose }) => {
 
+    const { t } = useTranslation();
+    return (
+        <Html fullscreen zIndexRange={[0, 10000]} style={{ pointerEvents: 'none' }} >
+            <div className="container-fluid h-100">
+                <div className="row g-0 h-100 align-items-end">
+                    <div className="col-12 mb-3">
+                        <div className='row align-items-end justify-content-center'>
+                            <div className="col align-self-center">
+                                <AnimatedButton
+                                    style={{ pointerEvents: 'auto', marginLeft: 'auto' }}
+                                    iconUrl={`${baseUrl}icons/left.svg`}
+                                    buttonText=''
+                                    onClick={() => prevImage()}
+                                />
+                            </div>
+                            <div className="col-6 align-self-end">
+                                <ImageInfo bookContent={bookContent} />
+                            </div>
+                            <div className="col align-self-center">
+                                <AnimatedButton
+                                    style={{ pointerEvents: 'auto', marginRight: 'auto' }}
+                                    iconUrl={`${baseUrl}icons/right.svg`}
+                                    buttonText=''
+                                    onClick={() => nextImage()}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                    <div style={{ position: 'absolute', top: 20, left: 30, zIndex: 999 }}>
                         <AnimatedButton
-                            style={{ marginLeft: 200 }}
-                            iconUrl={`${baseUrl}icons/right.svg`}
-                            buttonText=''
-                            onClick={() => nextImage()}
+                            iconUrl={`${baseUrl}icons/close.svg`}
+                            buttonText={t('close').toUpperCase()}
+                            onClick={onClose}
+                            style={{ pointerEvents: 'auto' }}
                         />
                     </div>
                 </div>
-                <AnimatedButton
-                    iconUrl={`${baseUrl}icons/close.svg`}
-                    buttonText={t('close').toUpperCase()}
-                    style={{ position: 'absolute', top: 20, left: 30, zIndex: 999 }}
-                    onClick={onClose}
-                />
-            </Html>
-
-        </>
+            </div>
+        </Html>
     )
+
 }
 
 
@@ -159,7 +187,7 @@ const ImageInfo: FC<{ bookContent: BookContent }> = ({ bookContent }) => {
     })
 
     return (
-        <aWeb.div style={styles} className='text-start fitxa-tecnica text-nowrap'>
+        <aWeb.div style={styles} className='text-center fitxa-tecnica text-nowrap'>
             <h5>{bookContent.title}</h5>
             <h5>{bookContent.date}</h5>
             <h5>{bookContent.technique}</h5>

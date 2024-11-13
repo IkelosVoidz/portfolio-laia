@@ -20,9 +20,6 @@ const InfoPage: FC<{ isOpen: boolean, onClose: () => void, onCloseAnimEnd: () =>
         }
     })
 
-    {/* #333f59 */ }
-    {/* #292830 */ }
-
     return (
         <animated.div style={{ ...styles, width: '100%', height: '100%', backgroundColor: '#fbbcad', color: '#292830', zIndex: 10000000 }}>
 

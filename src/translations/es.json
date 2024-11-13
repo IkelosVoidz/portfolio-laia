@@ -187,65 +187,65 @@
                 {
                     "imagePath": "pintura/6",
                     "title": "El sexo es una pastilla que tomas",
-                    "year": 2022,
-                    "media": "Pintura acrílica sobre madera",
-                    "dimensions": "20 x 20 cm"
+                    "date": 2022,
+                    "technique": "Pintura acrílica sobre madera",
+                    "size": "20 x 20 cm"
                 },
                 {
                     "imagePath": "pintura/7",
                     "title": "Últimos esfuerzos",
-                    "year": 2023,
-                    "media": "Acrílica sobre cinta de pintor sobre plástico acrílico",
-                    "dimensions": "50 x 40 cm"
+                    "date": 2023,
+                    "technique": "Acrílica sobre cinta de pintor sobre plástico acrílico",
+                    "size": "50 x 40 cm"
                 },
                 {
                     "imagePath": "pintura/8",
                     "title": "Camino al sol",
-                    "year": 2024,
-                    "media": "Lápices de colores sobre papel",
-                    "dimensions": "20 x 14 cm"
+                    "date": 2024,
+                    "technique": "Lápices de colores sobre papel",
+                    "size": "20 x 14 cm"
                 },
                 {
                     "imagePath": "pintura/9",
                     "title": "No me toques!",
-                    "year": 2023,
-                    "media": "Ceras sobre papel",
-                    "dimensions": "20 x 14 cm"
+                    "date": 2023,
+                    "technique": "Ceras sobre papel",
+                    "size": "20 x 14 cm"
                 },
                 {
                     "imagePath": "pintura/10",
                     "title": "No quiero pensar en las cosas que no me contaste",
-                    "year": 2024,
-                    "media": "Lápices de colores sobre papel",
-                    "dimensions": "11'5 x 11'5 cm"
+                    "date": 2024,
+                    "technique": "Lápices de colores sobre papel",
+                    "size": "11'5 x 11'5 cm"
                 },
                 {
                     "imagePath": "pintura/11",
                     "title": "Tirar para adelante",
-                    "year": 2024,
-                    "media": "Lápices de colores sobre papel",
-                    "dimensions": "20 x 28 cm"
+                    "date": 2024,
+                    "technique": "Lápices de colores sobre papel",
+                    "size": "20 x 28 cm"
                 },
                 {
                     "imagePath": "pintura/12",
                     "title": "Pájaros",
-                    "year": 2024,
-                    "media": "Lápices de colores sobre papel",
-                    "dimensions": "14 x 20 cm"
+                    "date": 2024,
+                    "technique": "Lápices de colores sobre papel",
+                    "size": "14 x 20 cm"
                 },
                 {
                     "imagePath": "pintura/13",
                     "title": "Fantasma",
-                    "year": 2023,
-                    "media": "Lápices de colores sobre papel",
-                    "dimensions": "11'5 x 11'5 cm"
+                    "date": 2023,
+                    "technique": "Lápices de colores sobre papel",
+                    "size": "11'5 x 11'5 cm"
                 },
                 {
                     "imagePath": "pintura/14",
                     "title": "Mejores amigos",
-                    "year": 2024,
-                    "media": "Marcadores",
-                    "dimensions": "11'5 x 11'5 cm"
+                    "date": 2024,
+                    "technique": "Marcadores",
+                    "size": "11'5 x 11'5 cm"
                 }
             ]
         },

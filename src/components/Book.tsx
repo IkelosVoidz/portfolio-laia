@@ -60,7 +60,6 @@ export const Book: FC<BookProps> = ({ position, bookGeometry, materials, cameraR
 
                     if (disableControls) return;
 
-
                     e.stopPropagation();
                     setHovered(false);
                 }}

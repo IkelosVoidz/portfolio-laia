@@ -10,3 +10,9 @@ export interface Book {
   title: string;
   content: BookContent[];
 }
+
+export enum Controls {
+  previous = 'previous',
+  next = 'next',
+  escape = 'escape'
+}

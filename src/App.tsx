@@ -1,12 +1,20 @@
 // import { ACESFilmicToneMapping } from "three";
 import { Canvas } from "@react-three/fiber"
+import { Controls } from "./utils/interfaces";
 import { Experience } from './components/Experience';
-import { OrbitControls } from '@react-three/drei';
-import { Suspense } from "react"
+import { OrbitControls, KeyboardControls, type KeyboardControlsEntry } from '@react-three/drei';
+import { Suspense, useMemo } from "react"
 import Spinner from "./components/shared/Spinner";
 import UI from "./components/UI";
 
 function App() {
+
+    const map = useMemo<KeyboardControlsEntry<Controls>[]>(() => [
+        { name: Controls.previous, keys: ['ArrowLeft', 'KeyA'] },
+        { name: Controls.next, keys: ['ArrowRight', 'KeyD'] },
+        { name: Controls.escape, keys: ['Escape'] },
+    ], [])
+
     return (
         <>
             <div style={{
@@ -29,7 +37,9 @@ function App() {
                     </>
                 )}
                 <Suspense fallback={<Spinner />}>
-                    <Experience />
+                    <KeyboardControls map={map}>
+                        <Experience />
+                    </KeyboardControls>
                 </Suspense>
             </Canvas >
         </>)

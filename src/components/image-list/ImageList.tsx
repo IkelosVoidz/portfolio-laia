@@ -1,8 +1,8 @@
 import { a as aWeb, useSpring } from '@react-spring/web'
-import { Book, BookContent } from '../../utils/interfaces'
+import { Book, BookContent, Controls } from '../../utils/interfaces'
 import { Camera, SRGBColorSpace, Texture } from 'three'
-import { FC, Suspense, useMemo, useState, useRef } from 'react'
-import { Html, useTexture } from '@react-three/drei'
+import { FC, Suspense, useMemo, useState, useRef, useEffect } from 'react'
+import { Html, useKeyboardControls, useTexture } from '@react-three/drei'
 import { useSprings } from '@react-spring/three'
 import { useTranslation } from 'react-i18next'
 import Backdrop from '../shared/Backdrop'
@@ -25,6 +25,14 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
     const [selectedImage, setSelectedImage] = useState<boolean>(false)
     const { t, i18n } = useTranslation()
     const imagePaths = useRef<string[]>([])
+
+    const prevPressed = useKeyboardControls<Controls>((state) => state.previous);
+    const nextPressed = useKeyboardControls<Controls>((state) => state.next);
+    const closePressed = useKeyboardControls<Controls>((state) => state.escape);
+
+    useEffect(() => { if (prevPressed) prevImage(); }, [prevPressed]);
+    useEffect(() => { if (nextPressed) nextImage(); }, [nextPressed]);
+    useEffect(() => { if (closePressed) onClose(); }, [closePressed]);
 
     const bookConfig = useMemo(() => {
         const config = t(`books.${selectedBook}`, { returnObjects: true }) as Book

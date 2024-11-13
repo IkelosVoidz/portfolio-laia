@@ -41,10 +41,10 @@ const InfoPage: FC<{ isOpen: boolean, onClose: () => void, onCloseAnimEnd: () =>
                 <div className="row h-100 w-100 justify-content-center">
                     <div className='col-10'>
                         <h1 className="mb-4 fw-bold">Statement</h1>
-                        <p style={{ fontSize: '1.5rem', textAlign: 'justify', fontWeight: 'bold' }}>
+                        <p style={{ fontSize: '2rem', textAlign: 'justify', fontWeight: 'bold' }}>
                             {t("text1")}
                         </p>
-                        <p style={{ fontSize: '1.5rem', textAlign: 'justify', fontWeight: 'bold' }}>
+                        <p style={{ fontSize: '2rem', textAlign: 'justify', fontWeight: 'bold' }}>
                             {t("text2")}
                         </p>
                     </div >

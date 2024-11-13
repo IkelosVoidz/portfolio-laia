@@ -3,7 +3,7 @@ import { Html } from "@react-three/drei"
 import { FC, Suspense, useState } from "react";
 
 
-const AnimatedButton: FC<{ iconUrl?: string, buttonText: string, textSize?: string, style?: React.CSSProperties, inCanvas?: boolean, onClick: () => void }> = ({ iconUrl, inCanvas, textSize, buttonText, style, onClick }) => {
+const AnimatedButton: FC<{ iconUrl?: string, buttonText: string, textSize?: string, style?: React.CSSProperties, inCanvas?: boolean, onClick: () => void, color?: String }> = ({ color, iconUrl, inCanvas, textSize, buttonText, style, onClick }) => {
 
     const [hovered, setHovered] = useState(false);
     const springProps = useSpring({
@@ -18,7 +18,8 @@ const AnimatedButton: FC<{ iconUrl?: string, buttonText: string, textSize?: stri
                 onMouseEnter={() => setHovered(true)}
                 onMouseLeave={() => setHovered(false)}
                 onClick={onClick}
-                style={springProps as any}
+                style={{ ...springProps as any, color: color ? color : '' }}
+
 
             >
                 {iconUrl && (

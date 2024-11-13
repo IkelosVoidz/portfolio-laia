@@ -1,15 +1,14 @@
-import { Environment, Html, useTexture } from '@react-three/drei'
+import { Environment, useTexture } from '@react-three/drei'
 import { Book } from './Book'
 import { DoubleSide, MeshBasicMaterial, SRGBColorSpace, Vector3 } from 'three'
-import { Suspense, useMemo, useState } from 'react'
-import { RoundEdgedBoxFlat } from '../utils/utils'
+import { Suspense, useMemo } from 'react'
+import { RoundEdgedBoxFlat, selectedBookAtom } from '../utils/utils'
 import { useThree } from '@react-three/fiber'
 import ImageList from './ImageList';
 import { useTranslation } from 'react-i18next'
 
-import AnimatedButton from './AnimatedButton';
 import Spinner from './Spinner'
-import InfoPage from './InfoPage'
+import { useAtom } from 'jotai'
 
 const baseUrl = import.meta.env.BASE_URL;
 useTexture.preload(`${baseUrl}textures/PORTADA.png`);
@@ -25,7 +24,7 @@ export const Experience = () => {
 
     const [picture] = useTexture([`${baseUrl}textures/PORTADA.png`])
     picture.colorSpace = SRGBColorSpace;
-    const [selectedBook, setSelectedBook] = useState<number | null>(null);
+    const [selectedBook, setSelectedBook] = useAtom(selectedBookAtom);
     const bookGeometry = useMemo(() => RoundEdgedBoxFlat(BOOK_WIDTH, BOOK_HEIGHT, BOOK_DEPTH, .1, 10), []);
 
     const materials = useMemo(() => [
@@ -45,9 +44,6 @@ export const Experience = () => {
 
         })
     ], []);
-
-
-    const [infoPageOpen, setInfoPageOpen] = useState(false);
 
     return (
         <>
@@ -87,18 +83,6 @@ export const Experience = () => {
             </Suspense>
 
 
-            {selectedBook === null &&
-                <AnimatedButton
-                    inCanvas
-                    iconUrl={`${baseUrl}icons/STAR.svg`}
-                    buttonText={'INFO'}
-                    style={{ position: 'absolute', bottom: 20, left: 30, zIndex: 10 }}
-                    onClick={() => setInfoPageOpen(true)}
-                />}
-
-            <Html fullscreen zIndexRange={[0, 10000]}>
-                <InfoPage isOpen={infoPageOpen} onClose={() => setInfoPageOpen(false)} />
-            </Html>
 
             <mesh position-y={0} rotation-x={-Math.PI / 2} receiveShadow>
                 <planeGeometry args={[100, 100]} />

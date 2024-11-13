@@ -183,6 +183,69 @@
                     "date": "2021",
                     "technique": "Oli sobre paper",
                     "size": "25 x 32 cm"
+                },
+                {
+                    "imagePath": "pintura/6",
+                    "title": "El sexe és una pastilla que prens",
+                    "year": 2022,
+                    "media": "Pintura acrílica sobre fusta",
+                    "dimensions": "20 x 20 cm"
+                },
+                {
+                    "imagePath": "pintura/7",
+                    "title": "Últims esforços",
+                    "year": 2023,
+                    "media": "Acrílica sobre cinta de pintor sobre plàstic acrílic",
+                    "dimensions": "50 x 40 cm"
+                },
+                {
+                    "imagePath": "pintura/8",
+                    "title": "Camí al sol",
+                    "year": 2024,
+                    "media": "Llapis de color sobre paper",
+                    "dimensions": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "pintura/9",
+                    "title": "No em toquis!",
+                    "year": 2023,
+                    "media": "Ceres sobre paper",
+                    "dimensions": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "pintura/10",
+                    "title": "No vull pensar en les coses que no em vas dir",
+                    "year": 2024,
+                    "media": "Llapis de color sobre paper",
+                    "dimensions": "11'5 x 11'5 cm"
+                },
+                {
+                    "imagePath": "pintura/11",
+                    "title": "Tirar endevant",
+                    "year": 2024,
+                    "media": "Llapis de color sobre paper",
+                    "dimensions": "20 x 28 cm"
+                },
+                {
+                    "imagePath": "pintura/12",
+                    "title": "Ocells",
+                    "year": 2024,
+                    "media": "Llapis de color sobre paper",
+                    "dimensions": "14 x 20 cm"
+                },
+                {
+                    "imagePath": "pintura/13",
+                    "title": "Fantasma",
+                    "year": 2023,
+                    "media": "Llapis de color sobre paper",
+                    "dimensions": "11'5 x 11'5 cm"
+                },
+                {
+                    "imagePath": "pintura/14",
+                    "title": "Millors amics",
+                    "year": 2024,
+                    "media": "Rotuladors",
+                    "dimensions": "11'5 x 11'5 cm"
                 }
             ]
         },

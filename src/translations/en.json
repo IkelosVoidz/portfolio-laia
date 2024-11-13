@@ -183,7 +183,71 @@
                     "date": "2021",
                     "technique": "Oil on paper",
                     "size": "25 x 32 cm"
+                },
+                {
+                    "imagePath": "pintura/6",
+                    "title": "Sex is a pill you take",
+                    "year": 2022,
+                    "media": "Acrylic paint on wood",
+                    "dimensions": "20 x 20 cm"
+                },
+                {
+                    "imagePath": "pintura/7",
+                    "title": "Last Efforts",
+                    "year": 2023,
+                    "media": "Acrylic on painter’s tape on acrylic plastic",
+                    "dimensions": "50 x 40 cm"
+                },
+                {
+                    "imagePath": "pintura/8",
+                    "title": "Drive up",
+                    "year": 2024,
+                    "media": "Color pencil on paper",
+                    "dimensions": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "pintura/9",
+                    "title": "Don’t Touch me?",
+                    "year": 2023,
+                    "media": "Crayon on paper",
+                    "dimensions": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "pintura/10",
+                    "title": "I don’t want to think about the things you didn’t tell me",
+                    "year": 2024,
+                    "media": "Color pencil on paper",
+                    "dimensions": "11'5 x 11'5 cm"
+                },
+                {
+                    "imagePath": "pintura/11",
+                    "title": "Push on through",
+                    "year": 2024,
+                    "media": "Color pencil on paper",
+                    "dimensions": "20 x 28 cm"
+                },
+                {
+                    "imagePath": "pintura/12",
+                    "title": "Birds",
+                    "year": 2024,
+                    "media": "Color pencil on paper",
+                    "dimensions": "14 x 20 cm"
+                },
+                {
+                    "imagePath": "pintura/13",
+                    "title": "Ghost",
+                    "year": 2023,
+                    "media": "Color pencil on paper",
+                    "dimensions": "11'5 x 11'5 cm"
+                },
+                {
+                    "imagePath": "pintura/14",
+                    "title": "Best friends",
+                    "year": 2024,
+                    "media": "Markers",
+                    "dimensions": "11'5 x 11'5 cm"
                 }
+
             ]
         },
        {

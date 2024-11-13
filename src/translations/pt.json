@@ -183,6 +183,69 @@
                     "date": "2021",
                     "technique": "Óleo sobre papel",
                     "size": "25 x 32 cm"
+                },
+                {
+                    "imagePath": "pintura/6",
+                    "title": "Sexo é uma pílula que você toma",
+                    "year": 2022,
+                    "media": "Tinta acrílica sobre madeira",
+                    "dimensions": "20 x 20 cm"
+                },
+                {
+                    "imagePath": "pintura/7",
+                    "title": "Últimos esforços",
+                    "year": 2023,
+                    "media": "Acrílico sobre fita de pintor sobre plástico",
+                    "dimensions": "50 x 40 cm"
+                },
+                {
+                    "imagePath": "pintura/8",
+                    "title": "Caminho do sol",
+                    "year": 2024,
+                    "media": "Lápis de cor sobre papel",
+                    "dimensions": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "pintura/9",
+                    "title": "Não me toque!",
+                    "year": 2023,
+                    "media": "Ceras sobre papel",
+                    "dimensions": "20 x 14 cm"
+                },
+                {
+                    "imagePath": "pintura/10",
+                    "title": "Não quero pensar nas coisas que não me contou",
+                    "year": 2024,
+                    "media": "Lápis de cor sobre papel",
+                    "dimensions": "11'5 x 11'5 cm"
+                },
+                {
+                    "imagePath": "pintura/11",
+                    "title": "Puxar para frente",
+                    "year": 2024,
+                    "media": "Lápis de cor sobre papel",
+                    "dimensions": "20 x 28 cm"
+                },
+                {
+                    "imagePath": "pintura/12",
+                    "title": "Pássaros",
+                    "year": 2024,
+                    "media": "Lápis de cor sobre papel",
+                    "dimensions": "14 x 20 cm"
+                },
+                {
+                    "imagePath": "pintura/13",
+                    "title": "Fantasma",
+                    "year": 2023,
+                    "media": "Lápis de cor sobre papel",
+                    "dimensions": "11'5 x 11'5 cm"
+                },
+                {
+                    "imagePath": "pintura/14",
+                    "title": "Melhores amigos",
+                    "year": 2024,
+                    "media": "Marcadores",
+                    "dimensions": "11'5 x 11'5 cm"
                 }
             ]
         },

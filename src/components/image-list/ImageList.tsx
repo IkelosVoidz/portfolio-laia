@@ -68,7 +68,7 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
     }))
 
     const prevImage = () => {
-        if (currentIndex > 0) {
+        if (currentIndex > 0 && !selectedImage) {
             setCurrentIndex((prev) => {
                 const newIndex = prev - 1
                 api.start((index) => ({
@@ -80,7 +80,8 @@ const ImageList: FC<ImageListProps> = ({ selectedBook, onClose, cameraRef }) => 
     }
 
     const nextImage = () => {
-        if (currentIndex < textures.length - 1) {
+
+        if (currentIndex < textures.length - 1 && !selectedImage) {
             setCurrentIndex((prev) => {
                 const newIndex = prev + 1
                 api.start((index) => ({
